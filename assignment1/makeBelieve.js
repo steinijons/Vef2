@@ -1,21 +1,11 @@
-//studdist við þetta til að koma mér af stað https://www.youtube.com/watch?v=1BMYFAFPrfc
-
-/*function __(someSelector){
-  var input = {};
-  input.someSelector = someSelector;
-  input.element = document.querySelector(input.someSelector);
-
-
-}*/
 //Hér er lýst yfir nafnlausu falli og kallað í það beint
-//
 (function() {
   // Lýsa yfir constructor function hér, nota PascalCasing
   function MakeBelieveElement(DOMElements, length) {
     this.elements = DOMElements;
     this.length = length;
 
-    //Functions
+    //Fun begins
 
     this.data = function (key, value) {
       //key = background
@@ -39,29 +29,57 @@
       return new MakeBelieveElement(siblings, siblings.length);
     };
 // 3 - Parent
-    this.parent = function (query = null) {
-      if(this.elements) {
-        return this.elements[0].parentNode
+    this.parent = function (query) {
+      //console.log(this.elements);
+      var siblings = [];
+      for (var i = 0; i < this.length; i++) {
+        var currentElement = this.elements[i];
+        if(currentElement.nextElementSibling) {
+          siblings.push(currentElement.nextElementSibling);
+        }
       }
-      return null
+      var parentList =[];
+      for (var i = 0; i < siblings.length; i++) {
+        var currentElement = siblings[i];
+        if(!(parentList.includes(currentElement.parentNode)))
+          parentList.push(currentElement.parentNode);
+       }
+       return new MakeBelieveElement(parentList, parentList.length);
+
+
     }
 // 4 - Grandparent
-    this.grandParent = function (query = null) {
-      if(this.elements) {
-        return this.elements[0].parentNode.parentNode
+    this.grandParent = function (query) {
+      console.log(this.elements);
+      var siblings = [];
+      for (var i = 0; i < this.length; i++) {
+        var currentElement = this.elements[i];
+        console.log(currentElement.parentNode.parentNode);
+        if(currentElement.nextElementSibling) {
+          siblings.push(currentElement.nextElementSibling);
+        }
       }
-      return null
+       var grandParentList =[];
+       for (var i = 0; i < siblings.length; i++) {
+         var currentElement = siblings[i];
+         if(!(grandParentList.includes(currentElement.parentNode.parentNode)))
+           grandParentList.push(currentElement.parentNode.parentNode);
+        }
+        return new MakeBelieveElement(grandParentList, grandParentList.length);
     }
 
 // 5 - Ancestors
   this.ancestor = function (query) {
-
+    //console.log(this.elements[0])
+    var elem = this.elements[0].parentNode.parentNode;
+    return elem;
   }
+
 
 // 6 - Click handler
 
 
-// End of function
+// End of fun
   };
 
 
@@ -75,7 +93,8 @@
   //assign-a fallið __ svo það sé aðgegnilegt utan scope
   window.__ = innerMakeBelieve;
 })();
-var parent = __('.child').parent()
-var grandParent = __('.child').grandParent()
-console.log(parent)
-console.log(grandParent)
+//var parent = __('.orphan').parent()
+var grandParent = __('#Fanney').grandParent()
+//console.log(parent);
+console.log('Grandparent:');
+console.log(grandParent);
