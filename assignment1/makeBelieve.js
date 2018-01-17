@@ -30,49 +30,48 @@
     };
 // 3 - Parent
     this.parent = function (query) {
-      //console.log(this.elements);
-      var siblings = [];
-      for (var i = 0; i < this.length; i++) {
-        var currentElement = this.elements[i];
-        if(currentElement.nextElementSibling) {
-          siblings.push(currentElement.nextElementSibling);
+      var temp = document.querySelectorAll(query);
+      var parentList =[];
+      for (var c = 0; c < this.length; c++) {
+        if (query == undefined) {
+          parentList.push(this.elements[c].parentNode);
+          continue;
+        }
+        for (var p = 0; p < temp.length; p++) {
+          if (temp[p] == (this.elements[c].parentNode)) {
+            parentList.push(this.elements[c].parentNode);
+          }
         }
       }
-      var parentList =[];
-      for (var i = 0; i < siblings.length; i++) {
-        var currentElement = siblings[i];
-        if(!(parentList.includes(currentElement.parentNode)))
-          parentList.push(currentElement.parentNode);
-       }
-       return new MakeBelieveElement(parentList, parentList.length);
-
-
+      return new MakeBelieveElement(parentList, parentList.length);
     }
 // 4 - Grandparent
     this.grandParent = function (query) {
-      console.log(this.elements);
-      var siblings = [];
-      for (var i = 0; i < this.length; i++) {
-        var currentElement = this.elements[i];
-        console.log(currentElement.parentNode.parentNode);
-        if(currentElement.nextElementSibling) {
-          siblings.push(currentElement.nextElementSibling);
+      var temp = document.querySelectorAll(query);
+      var grandParentList =[];
+      for (var c = 0; c < this.length; c++) {
+        if (query == undefined) {
+          grandParentList.push(this.elements[c].parentNode.parentNode);
+          continue;
+        }
+        for (var p = 0; p < temp.length; p++) {
+          if (temp[p] == (this.elements[c].parentNode.parentNode)) {
+            grandParentList.push(this.elements[c].parentNode.parentNode);
+          }
         }
       }
-       var grandParentList =[];
-       for (var i = 0; i < siblings.length; i++) {
-         var currentElement = siblings[i];
-         if(!(grandParentList.includes(currentElement.parentNode.parentNode)))
-           grandParentList.push(currentElement.parentNode.parentNode);
-        }
-        return new MakeBelieveElement(grandParentList, grandParentList.length);
+      return new MakeBelieveElement(grandParentList, grandParentList.length);
     }
 
 // 5 - Ancestors
   this.ancestor = function (query) {
-    //console.log(this.elements[0])
-    var elem = this.elements[0].parentNode.parentNode;
-    return elem;
+    var currGandPaPa = this.grandParent();
+    var ancestorList = [];
+
+    console.log('papa');
+    console.log(currGandPaPa);
+
+    return new MakeBelieveElement();
   }
 
 
@@ -84,6 +83,7 @@
 
 
   var innerMakeBelieve  = function (query) {
+    console.log(query);
     var elements = document.querySelectorAll(query);
     if(elements) {
       return new MakeBelieveElement(elements, elements.length);
@@ -93,8 +93,10 @@
   //assign-a fallið __ svo það sé aðgegnilegt utan scope
   window.__ = innerMakeBelieve;
 })();
-//var parent = __('.orphan').parent()
-var grandParent = __('#Fanney').grandParent()
+//var parent = __('.child').parent('.apapabbi');
+var grandParent = __('.childPaPa').grandParent('.grandpa1')
 //console.log(parent);
 console.log('Grandparent:');
 console.log(grandParent);
+/*var ancestor = __('#password').ancestor('.ancestor2');
+console.log(ancestor);*/
