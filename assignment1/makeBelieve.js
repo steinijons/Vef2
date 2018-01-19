@@ -107,7 +107,11 @@
           parent.appendChild(child.content.firstChild);
         }
         else if (html instanceof Node) {
-          parent.appendChild(html);
+          var elem = html.parentNode;
+          for (var i = 0; i < elem.length; i++) {
+            elem[i].innerHTML = html;
+          }
+          parent.appendChild(elem,html);
         }
       }
     }
@@ -121,9 +125,21 @@
           parent.insertBefore(child.content.firstChild, parent.firstChild);
         }
         else if (html instanceof Node) {
-          parent.insertBefore(html, parent.firstChild);
+          var elem = html.parentNode;
+          for (var i = 0; i < elem.length; i++) {
+            elem[i].innerHTML = html;
+          }
+          var p = elem + html;
+          parent.insertBefore(elem, parent.firstChild);
         }
       }
+    }
+
+
+
+    // 12 - CSS()
+    this.css = function () {
+
     }
 
 // End of fun
@@ -144,7 +160,8 @@
 
 
 
-var prepender = __('.the-prepender').prepend('<p>I am the prepended paragraph!</p>');
+var css = __('#elemToChange').css('margin-bottom', '5px');
+var prepender = __('.the-prepender').prepend('<p>I am an prepended paragraph!</p>');
 var prependler = __('.the-prepender').prepend(
   document.createElement('p')
     .appendChild(
@@ -152,7 +169,7 @@ var prependler = __('.the-prepender').prepend(
     )
 );
 
-var appender = __('.the-appender').append('<p>I am the appended paragraph!</p>');
+var appender = __('.the-appender').append('<p>I am an appended paragraph!</p>');
 var appendler = __('.the-appender').append(
   document.createElement('p')
     .appendChild(
