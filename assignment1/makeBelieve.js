@@ -95,30 +95,36 @@
   }
 
 // 8 - Append
-  this.append = function (html) {
-    // An empty element, new HTMl will be appended to this
-    // fannst þetta meika smá sens
-    // https://www.w3schools.com/js/js_htmldom_nodes.asp
-    // https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro
-    var node = document.createElement('template');
-    if (typeof html === 'string') {
+    this.append = function (html) {
+      // An empty element, new HTMl will be appended to this
+      // https://www.w3schools.com/js/js_htmldom_nodes.asp
+      // https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro
+      var child = document.createElement('template');
       for (var i = 0; i < this.length; i++) {
-        var currElem = this.elements[i];
-        node.textContent = html;
-        currElem.appendChild(node);
+        var parent = this.elements[i];
+        if (typeof html === 'string') {
+          child.innerHTML = html;
+          parent.appendChild(child.content.firstChild);
+        }
+        else if (html instanceof Node) {
+          parent.appendChild(html);
+        }
       }
     }
-    if(html instanceof Node) {
-      for (var i = 0; i < this.length; i++) {
-        var currElem = this.elements[i];
-        currElem.appendChild(html);
-      }
-    }
-  }
   // 9 - Prepend
-  this.prepend = function () {
-    
-  }
+    this.prepend = function (html) {
+      var child = document.createElement('template');
+      for (var i = 0; i < this.length; i++) {
+        var parent = this.elements[i];
+        if (typeof html === 'string') {
+          child.innerHTML = html;
+          parent.insertBefore(child.content.firstChild, parent.firstChild);
+        }
+        else if (html instanceof Node) {
+          parent.insertBefore(html, parent.firstChild);
+        }
+      }
+    }
 
 // End of fun
   };
@@ -138,6 +144,14 @@
 
 
 
+var prepender = __('.the-prepender').prepend('<p>I am the prepended paragraph!</p>');
+var prependler = __('.the-prepender').prepend(
+  document.createElement('p')
+    .appendChild(
+      document.createTextNode('I am an prepended paragraph!')
+    )
+);
+
 var appender = __('.the-appender').append('<p>I am the appended paragraph!</p>');
 var appendler = __('.the-appender').append(
   document.createElement('p')
@@ -145,17 +159,13 @@ var appendler = __('.the-appender').append(
       document.createTextNode('I am an appended paragraph!')
     )
 );
-console.log(appender);
-console.log(appendler);
-
 var handler = __('#password').onClick(function (evt) {
   console.log(evt.target);
 });
 var insertText = __('#shakespeare-novel').insertText('To be, or not to be: this is the question');
-
-//var parent = __('.child').parent('.apapabbi');
-//var grandParent = __('#usrnm').grandParent('#grandfather');
+var parent = __('.child').parent('.apapabbi');
+var grandParent = __('#usrnm').grandParent('#grandfather');
 //console.log(grandParent);
 //console.log('Ancestors');
-//var ancestor = __('#usrnm').ancestor('.ancestr');
+var ancestor = __('#usrnm').ancestor('.ancestr');
 //console.log(ancestor);
