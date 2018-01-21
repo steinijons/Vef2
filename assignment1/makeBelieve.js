@@ -47,6 +47,7 @@
     }
 // 4 - Grandparent
     this.grandParent = function (query) {
+      // Nodelist of selectors from query
       var temp = document.querySelectorAll(query);
       var grandParentList =[];
       for (var c = 0; c < this.length; c++) {
@@ -83,15 +84,19 @@
 // 6 - Click handler
   this.onClick = function (evt) {
     for (var i = 0; i < this.length; i++) {
-      this.elements[i].addEventListener('click', evt);
+      var pass = this.elements[i];
+      pass.addEventListener('click', function(){console.log(pass.value)});
     }
+    return new MakeBelieveElement(pass, pass.length);
   }
 
 // 7 - Overwrite
   this.insertText = function (text) {
+    var texts = this.elements;
       for (var i = 0; i < this.length; i++) {
-        this.elements[i].innerHTML = text;
+        texts[i].innerHTML = text;
       }
+      return new MakeBelieveElement(texts, texts.length);
   }
 
 // 8 - Append
@@ -114,6 +119,7 @@
           parent.appendChild(elem,html);
         }
       }
+      return new MakeBelieveElement(parent, parent.length);
     }
   // 9 - Prepend
     this.prepend = function (html) {
@@ -133,14 +139,41 @@
           parent.insertBefore(elem, parent.firstChild);
         }
       }
+      return new MakeBelieveElement(parent, parent.length);
     }
 
 
 
-    // 12 - CSS()
-    this.css = function () {
-
+    // 12 - CSS
+    this.css = function (myKey, value) {
+      var selector = this.elements;
+      for (var i = 0; i < selector.length; i++) {
+        selector[i].setAttribute(
+          'style',
+          '' + myKey + ': ' + value + ';'
+        );
+      }
+      return new MakeBelieveElement(selector, selector.length);
     }
+
+    // 13 - Toggle
+    this.toggleClass = function(myClass) {
+      var elems = this.elements;
+      for (var i = 0; i < elems.length; i++) {
+        if(!elems[i].classList.contains(myClass)){
+          elems[i].classList.add(myClass);
+        }
+        else {
+          elems[i].classList.remove(myClass);
+        }
+      }
+    }
+    // 14 - Submit handler
+    this.onSubmit = function (myFunc) {
+      
+    }
+
+
 
 // End of fun
   };
@@ -159,8 +192,10 @@
 })();
 
 
+__('#elemToChange').toggleClass('six');
+var csser = __('#elemToChange').css('color', '#EEE8AA');
+//console.log(csser);
 
-var css = __('#elemToChange').css('margin-bottom', '5px');
 var prepender = __('.the-prepender').prepend('<p>I am an prepended paragraph!</p>');
 var prependler = __('.the-prepender').prepend(
   document.createElement('p')
@@ -177,12 +212,9 @@ var appendler = __('.the-appender').append(
     )
 );
 var handler = __('#password').onClick(function (evt) {
-  console.log(evt.target);
+  console.log('pass',evt.target);
 });
 var insertText = __('#shakespeare-novel').insertText('To be, or not to be: this is the question');
 var parent = __('.child').parent('.apapabbi');
 var grandParent = __('#usrnm').grandParent('#grandfather');
-//console.log(grandParent);
-//console.log('Ancestors');
 var ancestor = __('#usrnm').ancestor('.ancestr');
-//console.log(ancestor);

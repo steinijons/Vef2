@@ -10,18 +10,18 @@
       <div class="ancestr">
         <div class="some-div">
           <div id="grandfather">
-            <form>
-              <input id= "usrnm" type="text" name="username" value="username">
-              <input id="passwrd" type="passwrd" name="passwrd" value="passwrd">
+            <form id="my-form">
+              <input id= "username" type="text" name="username" value="username">
+              <input id="password" type="password" name="password" value="fanneyPassword">
             </form>
           </div>
         </div>
       </div>
     </div>
-
+    <div>
+      <h2 id="elemToChange" class="six">Change me!</h2>
+    </div>
     <p id="shakespeare-novel">Overwrite me!</p>
-    <p>But not me</p>
-
     <div class="the-appender">
       <h2>I am the appender!</h2>
     </div>
@@ -54,10 +54,17 @@
 
 
 <style media="screen">
+  #elemToChange {
+    color: pink;
+    font font-family: Arial;
+  }
   .five {
     color: blue;
   }
   .ten {
     color: pink;
+  }
+  .six {
+    background-color: #ddd;
   }
 </style>
