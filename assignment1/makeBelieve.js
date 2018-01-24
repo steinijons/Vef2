@@ -82,9 +82,7 @@
 
 // 6 - Click handler
   this.onClick = function (evt) {
-    for (var i = 0; i < this.length; i++) {
-      this.elements[i].addEventListener('click', evt);
-    }
+    addEventListener('click', evt);
   }
 
 // 7 - Overwrite
@@ -135,11 +133,43 @@
       }
     }
 
+  //10 - delete
+    this.delete = function () {
+      console.log(this.elements[0]);
+      
+      this.elements[0].parentNode.removeChild(this.elements[0]);
+      
+      console.log(this.elements[0]);
+    }
+
+  //11 - ajax
 
 
-    // 12 - CSS()
-    this.css = function () {
+  // 12 - CSS()
+    this.css = function (bla1, bla2) {
 
+    }
+
+    //13 - toggleClass
+    this.toggleClass = function(query) {
+      if(!this.elements[0].classList.contains(query)){
+        this.elements[0].classList.add(query);
+      }else{
+        this.elements[0].classList.remove(query);
+      }
+      console.log(this.elements[0]);      
+    }
+    //14 - OnSubmit
+    this.onSubmit = function (evt) {
+      var elem = this.elements[0].firstChild;
+      elem.parentElement[2].addEventListener('click', evt);
+    }
+    //15 - onInput
+    this.onInput = function (evt) {
+      var elem = this.elements[0].firstChild;     
+
+      elem.parentElement[0].addEventListener("input", evt);
+      elem.parentElement[1].addEventListener("input", evt);
     }
 
 // End of fun
@@ -156,9 +186,27 @@
   };
   //assign-a fallið __ svo það sé aðgegnilegt utan scope
   window.__ = innerMakeBelieve;
+
 })();
 
+/*__.ajax({
+  url: '/some-url',
+  method: 'GET',
+  timeout: 10,
+  data: {}, 
+  headers: [
+    { "Authorization": "my-secret-key" }
+  ],
+  success: function(resp) {
 
+  },
+  fail: function(error) {
+    
+  },
+  beforeSend: function(xhr) {
+
+  }
+});*/
 
 var css = __('#elemToChange').css('margin-bottom', '5px');
 var prepender = __('.the-prepender').prepend('<p>I am an prepended paragraph!</p>');
@@ -176,8 +224,8 @@ var appendler = __('.the-appender').append(
       document.createTextNode('I am an appended paragraph!')
     )
 );
-var handler = __('#password').onClick(function (evt) {
-  console.log(evt.target);
+__('#password').onClick(function (evt) {
+  console.log(evt.target.value);
 });
 var insertText = __('#shakespeare-novel').insertText('To be, or not to be: this is the question');
 var parent = __('.child').parent('.apapabbi');
@@ -186,3 +234,22 @@ var grandParent = __('#usrnm').grandParent('#grandfather');
 //console.log('Ancestors');
 var ancestor = __('#usrnm').ancestor('.ancestr');
 //console.log(ancestor);
+
+// 10 - delete
+__('.some-div h2').delete();
+
+// 11 - ajax
+
+// 12 - css
+__('#csstest').css('margin-bottom', '5px');
+
+// 13 - ToggleClass
+__('#elemToChange').toggleClass('someClass');
+// 14 - onSubmit
+__('#my-form').onSubmit(function (evt) {
+  alert("username and password submitted");
+});
+// 15 - onInput
+__('#my-form').onInput(function (evt){
+  console.log(evt.target.value);
+});
