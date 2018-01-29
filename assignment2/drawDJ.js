@@ -4,10 +4,23 @@ var context = canvas.getContext('2d');
 var radius = 10;
 var dragging = false;
 
+/*hafa þetta í html
+<canvas id='canvas' width='400' height='400'>
+*/
+
+//fillRect(x,y,width, height) - fylltur kassi
+//strokeRect(x,y,width, height) - kassa útlínur
+//
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 context.lineWidth = radius * 2;
+
+//kassi
+/*
+    context.fillstyle = 'black';
+    context.fillRect(10,10,100,100);
+*/
 
 var putPoint = function(e) {
     if(dragging){
@@ -19,7 +32,6 @@ var putPoint = function(e) {
         context.fill();
         context.beginPath();
         context.moveTo(e.clientX, e.clientY);
-
     }
 }
 
