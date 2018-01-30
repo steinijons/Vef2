@@ -1,3 +1,8 @@
+/**
+ * Fanney Þóra Vilhjálmsdóttir - fanneyv12
+ * Steingrímur Arnar Jónsson - steingrimur13
+ */
+
 //Hér er lýst yfir nafnlausu falli og kallað í það beint
 (function() {
   // Lýsa yfir constructor function hér, nota PascalCasing
@@ -47,7 +52,6 @@
     }
 // 4 - Grandparent
     this.grandParent = function (query) {
-      // Nodelist of selectors from query
       var temp = document.querySelectorAll(query);
       var grandParentList =[];
       for (var c = 0; c < this.length; c++) {
@@ -65,63 +69,54 @@
     }
 
 // 5 - Ancestors - þetta er í einhverju rugli
-  this.ancestor = function (query) {
-    var ancestorList = [];
-    var queryAncestor = document.querySelectorAll(query);
+    this.ancestor = function (query) {
+      var ancestorList = [];
+      var queryAncestor = document.querySelectorAll(query);
 
-    for (var e = 0; e < this.elements.length; e++) {
-      for (var i = 0; i < queryAncestor.length; i++) {
-        var grandFunction = this.grandParent();
-        if(queryAncestor[i] == this.elements[i].grandFunction){
-          ancestorList.push(this.elements[i])
+      for (var e = 0; e < this.elements.length; e++) {
+        for (var i = 0; i < queryAncestor.length; i++) {
+          var grandFunction = this.grandParent();
+          if(queryAncestor[i] == this.elements[i].grandFunction){
+            ancestorList.push(this.elements[i])
+          }
         }
       }
-    }
-    return new MakeBelieveElement(ancestorList, ancestorList.length);
+      return new MakeBelieveElement(ancestorList, ancestorList.length);
   }
 
 
 // 6 - Click handler
-  this.onClick = function (evt) {
-    for (var i = 0; i < this.length; i++) {
-      var pass = this.elements[i];
-      pass.addEventListener('click', function(){console.log(pass.value)});
+    this.onClick = function (evt) {
+      addEventListener('click', evt);
     }
-    return new MakeBelieveElement(pass, pass.length);
-  }
-
 // 7 - Overwrite
-  this.insertText = function (text) {
-    var texts = this.elements;
-      for (var i = 0; i < this.length; i++) {
-        texts[i].innerHTML = text;
+    this.insertText = function (text) {
+      var texts = this.elements;
+        for (var i = 0; i < this.length; i++) {
+          texts[i].innerHTML = text;
+        }
+        return new MakeBelieveElement(texts, texts.length);
       }
-      return new MakeBelieveElement(texts, texts.length);
-  }
-
 // 8 - Append
     this.append = function (html) {
-      // An empty element, new HTMl will be appended to this
-      // https://www.w3schools.com/js/js_htmldom_nodes.asp
-      // https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro
       var child = document.createElement('template');
-      for (var i = 0; i < this.length; i++) {
-        var parent = this.elements[i];
-        if (typeof html === 'string') {
-          child.innerHTML = html;
-          parent.appendChild(child.content.firstChild);
-        }
-        else if (html instanceof Node) {
-          var elem = html.parentNode;
-          for (var i = 0; i < elem.length; i++) {
-            elem[i].innerHTML = html;
-          }
-          parent.appendChild(elem,html);
-        }
-      }
-      return new MakeBelieveElement(parent, parent.length);
+         for (var i = 0; i < this.length; i++) {
+           var parent = this.elements[i];
+           if (typeof html === 'string') {
+             child.innerHTML = html;
+             parent.appendChild(child.content.firstChild);
+           }
+           else if (html instanceof Node) {
+             var elem = html.parentNode;
+             for (var i = 0; i < elem.length; i++) {
+               elem[i].innerHTML = html;
+             }
+             parent.appendChild(elem,html);
+           }
+         }
+         return new MakeBelieveElement(parent, parent.length);
     }
-  // 9 - Prepend
+// 9 - Prepend
     this.prepend = function (html) {
       var child = document.createElement('template');
       for (var i = 0; i < this.length; i++) {
@@ -142,9 +137,18 @@
       return new MakeBelieveElement(parent, parent.length);
     }
 
+//10 - delete
+    this.delete = function () {
+      var elems = this.elements;
+      for (var i = 0; i < this.length; i++) {
+        elems[i].remove();
+      }
+      return new MakeBelieveElement(elems, elems.length);
+    }
 
+//11 - ajax
 
-    // 12 - CSS
+// 12 - CSS()
     this.css = function (myKey, value) {
       var selector = this.elements;
       for (var i = 0; i < selector.length; i++) {
@@ -155,8 +159,7 @@
       }
       return new MakeBelieveElement(selector, selector.length);
     }
-
-    // 13 - Toggle
+//13 - toggleClass
     this.toggleClass = function(myClass) {
       var elems = this.elements;
       for (var i = 0; i < elems.length; i++) {
@@ -167,20 +170,25 @@
           elems[i].classList.remove(myClass);
         }
       }
+      return new MakeBelieveElement(elems, elems.length);
     }
-    // 14 - Submit handler
-    this.onSubmit = function (myFunc) {
-      
+//14 - OnSubmit
+    this.onSubmit = function (evt) {
+      for (var i = 0; i < this.length; i++) {
+        //var elem = this.elements[i].firstChild;
+        this.elements[i].addEventListener('submit', evt);
+      }
+      //var elem = this.elements[0].firstChild;
     }
-
-
-
+//15 - onInput
+    this.onInput = function (evt) {
+      for (var i = 0; i < this.length; i++) {
+        this.elements[i].addEventListener('input', evt);
+      }
+    }
 // End of fun
   };
-
-
   var innerMakeBelieve  = function (query) {
-    //console.log(query);
     var elements = document.querySelectorAll(query);
     if(elements) {
       return new MakeBelieveElement(elements, elements.length);
@@ -191,30 +199,70 @@
   window.__ = innerMakeBelieve;
 })();
 
+/*__.ajax({
+  url: '/some-url',
+  method: 'GET',
+  timeout: 10,
+  data: {},
+  headers: [
+    { "Authorization": "my-secret-key" }
+  ],
+  success: function(resp) {
 
-__('#elemToChange').toggleClass('six');
-var csser = __('#elemToChange').css('color', '#EEE8AA');
-//console.log(csser);
+  },
+  fail: function(error) {
 
-var prepender = __('.the-prepender').prepend('<p>I am an prepended paragraph!</p>');
-var prependler = __('.the-prepender').prepend(
-  document.createElement('p')
-    .appendChild(
-      document.createTextNode('I am an prepended paragraph!')
-    )
-);
+  },
+  beforeSend: function(xhr) {
 
-var appender = __('.the-appender').append('<p>I am an appended paragraph!</p>');
-var appendler = __('.the-appender').append(
-  document.createElement('p')
-    .appendChild(
-      document.createTextNode('I am an appended paragraph!')
-    )
-);
-var handler = __('#password').onClick(function (evt) {
-  console.log('pass',evt.target);
+  }
+});*/
+
+// 3 - parent
+__('#password').parent();
+__('#password').parent('form');
+// 4 - grandParent
+__('#password').grandParent();
+__('#password').grandParent('#grandfather');
+__('#password').grandParent('#unknownID');
+// 5 - ancestor
+__('#username').ancestor('.ancestr');
+// 6 - onClick
+__('#password').onClick(function (evt) {
+  console.log(evt.target.value);
 });
-var insertText = __('#shakespeare-novel').insertText('To be, or not to be: this is the question');
-var parent = __('.child').parent('.apapabbi');
-var grandParent = __('#usrnm').grandParent('#grandfather');
-var ancestor = __('#usrnm').ancestor('.ancestr');
+// 7 - insertText
+__('#shakespeare-novel').insertText('To be, or not to be: this is the question');
+// 8 - append
+__('.the-appender').append('<p>I am an appended paragraph!</p>');
+__('.the-appender').append(
+  document.createElement('p')
+  .appendChild(
+    document.createTextNode('I am an appended paragraph!')
+  )
+);
+// 9 - prepend
+__('.the-prepender').prepend('<p>I am an prepended paragraph!</p>');
+__('.the-prepender').prepend(
+  document.createElement('p')
+  .appendChild(
+    document.createTextNode('I am an prepended paragraph!')
+  )
+);
+// 10 - delete
+__('.some-div h2').delete();
+
+// 11 - ajax
+
+// 12 - css
+__('#csstest').css('margin-bottom', '5px');
+// 13 - ToggleClass
+__('#elemToChange').toggleClass('someClass');
+// 14 - onSubmit
+__('#my-form').onSubmit(function (evt) {
+  alert("username and password submitted");
+});
+// 15 - onInput
+__('#my-form').onInput(function (evt){
+  console.log(evt.target.value);
+});
