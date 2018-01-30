@@ -22,10 +22,9 @@ function Pen(position) {
     Shape.call(this, position);
 }
 
-function Circle(position, width, height) {
+function Circle(position, width) {
     Shape.call(this, position);
     this.width = width;
-    this.height = height;
 }
 
 function Line(position) {

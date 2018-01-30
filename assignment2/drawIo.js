@@ -2,7 +2,7 @@
 
 window.drawIo = {
     shapes: [],
-    selectedShape: 'text',
+    selectedShape: 'line',
     canvas: document.getElementById('canvas'),
     ctx: document.getElementById('canvas').getContext('2d'),
     selectElement: null, 
@@ -52,7 +52,7 @@ $(function () {
                 drawIo.selectElement = new Pen( {x: mouseEvent.offsetX, y: mouseEvent.offsetY});
                 break;
             case drawIo.availableShapes.CIRCLE:
-                drawIo.selectElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0 ,0 );
+                drawIo.selectElement = new Circle( {x: mouseEvent.offsetX, y: mouseEvent.offsetY}, 0);
                 break;
             case drawIo.availableShapes.LINE:
                 drawIo.selectElement = new Line( {x: mouseEvent.offsetX, y: mouseEvent.offsetY});
@@ -83,13 +83,14 @@ $(function () {
             if(drawIo.selectedShape == 'circle'){
                 drawIo.ctx.clearRect(0, 0, drawIo.canvas.width, drawIo.canvas.height);
                 drawIo.selectElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
-                drawCanvas();
+                
             }
             if(drawIo.selectedShape == 'line') {
                 drawIo.ctx.beginPath();
                 drawIo.ctx.moveTo(startLocation.x, startLocation.y);
                 drawIo.ctx.lineTo(mouseEvent.offsetX, mouseEvent.offsetY);                
-            }                
+            }      
+            drawCanvas();          
         }
     });
 
