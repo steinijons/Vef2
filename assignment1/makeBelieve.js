@@ -86,9 +86,16 @@
 
 
 // 6 - Click handler
+<<<<<<< HEAD
     this.onClick = function (evt) {
       addEventListener('click', evt);
     }
+=======
+  this.onClick = function (evt) {
+    addEventListener('click', evt);
+  }
+
+>>>>>>> 0a5893975069a93fb6ed42aab7787942885e78ec
 // 7 - Overwrite
     this.insertText = function (text) {
       var texts = this.elements;
@@ -137,6 +144,7 @@
       return new MakeBelieveElement(parent, parent.length);
     }
 
+<<<<<<< HEAD
 //10 - delete
     this.delete = function () {
       var elems = this.elements;
@@ -186,6 +194,47 @@
         this.elements[i].addEventListener('input', evt);
       }
     }
+=======
+  //10 - delete
+    this.delete = function () {
+      console.log(this.elements[0]);
+      
+      this.elements[0].parentNode.removeChild(this.elements[0]);
+      
+      console.log(this.elements[0]);
+    }
+
+  //11 - ajax
+
+
+  // 12 - CSS()
+    this.css = function (bla1, bla2) {
+
+    }
+
+    //13 - toggleClass
+    this.toggleClass = function(query) {
+      if(!this.elements[0].classList.contains(query)){
+        this.elements[0].classList.add(query);
+      }else{
+        this.elements[0].classList.remove(query);
+      }
+      console.log(this.elements[0]);      
+    }
+    //14 - OnSubmit
+    this.onSubmit = function (evt) {
+      var elem = this.elements[0].firstChild;
+      elem.parentElement[2].addEventListener('click', evt);
+    }
+    //15 - onInput
+    this.onInput = function (evt) {
+      var elem = this.elements[0].firstChild;     
+
+      elem.parentElement[0].addEventListener("input", evt);
+      elem.parentElement[1].addEventListener("input", evt);
+    }
+
+>>>>>>> 0a5893975069a93fb6ed42aab7787942885e78ec
 // End of fun
   };
   var innerMakeBelieve  = function (query) {
@@ -197,17 +246,23 @@
   };
   //assign-a fallið __ svo það sé aðgegnilegt utan scope
   window.__ = innerMakeBelieve;
+
 })();
 
 /*__.ajax({
   url: '/some-url',
   method: 'GET',
   timeout: 10,
+<<<<<<< HEAD
   data: {},
+=======
+  data: {}, 
+>>>>>>> 0a5893975069a93fb6ed42aab7787942885e78ec
   headers: [
     { "Authorization": "my-secret-key" }
   ],
   success: function(resp) {
+<<<<<<< HEAD
 
   },
   fail: function(error) {
@@ -249,13 +304,69 @@ __('.the-prepender').prepend(
     document.createTextNode('I am an prepended paragraph!')
   )
 );
+=======
+
+  },
+  fail: function(error) {
+    
+  },
+  beforeSend: function(xhr) {
+
+  }
+});*/
+
+var css = __('#elemToChange').css('margin-bottom', '5px');
+var prepender = __('.the-prepender').prepend('<p>I am an prepended paragraph!</p>');
+var prependler = __('.the-prepender').prepend(
+  document.createElement('p')
+    .appendChild(
+      document.createTextNode('I am an prepended paragraph!')
+    )
+);
+
+var appender = __('.the-appender').append('<p>I am an appended paragraph!</p>');
+var appendler = __('.the-appender').append(
+  document.createElement('p')
+    .appendChild(
+      document.createTextNode('I am an appended paragraph!')
+    )
+);
+__('#password').onClick(function (evt) {
+  console.log(evt.target.value);
+});
+var insertText = __('#shakespeare-novel').insertText('To be, or not to be: this is the question');
+
+//var parent = __('.child').parent('.apapabbi');
+<<<<<<< Updated upstream
+//var grandParent = __('#usrnm').grandParent('#grandfather');
+//console.log(grandParent);
+//console.log('Ancestors');
+//var ancestor = __('#usrnm').ancestor('.ancestr');
+//console.log(ancestor);
+/*
+=======
+var grandParent = __('.childPaPa').grandParent('.grandpa1')
+//console.log(parent);
+console.log('Grandparent:');
+console.log(grandParent);
+/*var ancestor = __('#password').ancestor('.ancestor2');
+console.log(ancestor);*/
+
+>>>>>>> 0a5893975069a93fb6ed42aab7787942885e78ec
 // 10 - delete
 __('.some-div h2').delete();
 
 // 11 - ajax
+<<<<<<< HEAD
 
 // 12 - css
 __('#csstest').css('margin-bottom', '5px');
+=======
+
+// 12 - css
+__('#csstest').css('margin-bottom', '5px');
+
+>>>>>>> 0a5893975069a93fb6ed42aab7787942885e78ec
 // 13 - ToggleClass
 __('#elemToChange').toggleClass('someClass');
 // 14 - onSubmit
@@ -265,4 +376,8 @@ __('#my-form').onSubmit(function (evt) {
 // 15 - onInput
 __('#my-form').onInput(function (evt){
   console.log(evt.target.value);
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 0a5893975069a93fb6ed42aab7787942885e78ec

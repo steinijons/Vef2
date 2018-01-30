@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Our drawing app!</title>
+    <link rel="stylesheet" href="look.css">
+  </head>
+  <body style='margin: 0'>
+    <div id='toolbar'>
+      <div id='rad'>
+        Radius <span id='radval'>10</span>
+        <div id='decrad' class='radcontrol'>-</div>
+        <div id='incrad' class='radcontrol'>+</div>
+      </div>
+      <div id="colors"></div>
+      <div>
+        <select id="fonts"></select>
+      </div>
+      <div>
+        <select id="DrawStyle">
+          <option class="tool selected" value="Pen">Pen</option>
+          <option class="tool" value="Rectangle">Rectangle</option>
+          <option class="tool" value="Circle">Circle</option>
+          <option class="tool" value="Line">Line</option>
+          <option class="tool" value="Text">Text</option>
+      </select>
+      </div>
+    </div>
+    </div>
+      <select>
+        <option class="tool selected" data-shape="pen" value="Pen">Pen</option>
+        <option class="tool" data-shape="rectangle" value="Rectangle">Rectangle</option>
+      </select>
+      <p>Enter the text here first</p> 
+      <input id="text" type="text" name="text" value="My Text."><br>
+      <p>Then click on the canvas to draw the text.</p>
+    </div>  
+    
+    <canvas id='canvas' style='display: block;' width="800" height="600">
+        Browser not supported
+    </canvas>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js' charset="utf-8"></script>
+    <script src='shapes.js' charset="utf-8"></script>
+    <script src='drawIo.js' charset="utf-8"></script>
+    <script src='PenSize.js' charset="utf-8"></script>
+    <script src='colors.js' charset="utf-8"></script>
+    <script src='text.js' charset="utf-8"></script>
+    <script src='toolSelect.js' charset="utf-8"></script>
+  </body>
+</html>
