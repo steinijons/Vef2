@@ -10,6 +10,11 @@
         Radius <span id='radval'>10</span>
         <div id='decrad' class='radcontrol'>-</div>
         <div id='incrad' class='radcontrol'>+</div>
+        <button id="loadButton" type="button" name="loadButton">Load</button>
+        <button id="saveButton" type="button" name="saveButton">Save</button>
+        <button type="button"  name="saveAsButton">
+          <a href="#" id="saveAsButton" name="saveAsLink">Save as...</a>
+        </button>
       </div>
       <div id="colors"></div>
       <div>
@@ -22,7 +27,7 @@
           <option class="tool" value="Circle">Circle</option>
           <option class="tool" value="Line">Line</option>
           <option class="tool" value="Text">Text</option>
-      </select>
+        </select>
       </div>
     </div>
     </div>
@@ -30,11 +35,11 @@
         <option class="tool selected" data-shape="pen" value="Pen">Pen</option>
         <option class="tool" data-shape="rectangle" value="Rectangle">Rectangle</option>
       </select>
-      <p>Enter the text here first</p> 
+      <p>Enter the text here first</p>
       <input id="text" type="text" name="text" value="My Text."><br>
       <p>Then click on the canvas to draw the text.</p>
-    </div>  
-    
+    </div>
+
     <canvas id='canvas' style='display: block;' width="800" height="600">
         Browser not supported
     </canvas>
