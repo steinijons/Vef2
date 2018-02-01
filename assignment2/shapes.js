@@ -63,9 +63,9 @@ Pen.prototype.render = function () {
 Circle.prototype.render = function () {
     //Render a rectangle
     drawIo.ctx.beginPath();
-    drawIo.ctx.arc(this.position.x, this.position.y, this.width, 0, Math.PI * 2);
+    drawIo.ctx.arc(this.position.x, this.position.y, Math.abs(this.width), 0, Math.PI * 2); 
     drawIo.ctx.fill();
-    drawIo.ctx.beginPath
+    drawIo.ctx.beginPath();
 };
 
 Line.prototype.render = function () {

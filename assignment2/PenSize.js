@@ -1,23 +1,22 @@
 
 
-var setRadius = function(newRadius) {
-    if(newRadius < minRadius){
-        newRadius = minRadius;
-    }else if(newRadius > maxRadius){
-        newRadius = maxRadius;
+var setRadius = function(newR) {
+    if(newR < minR){
+        newR = minR;
+    }else if(newR > maxR){
+        newR = maxR;
     }
-    radius = newRadius;
+    radius = newR;
     drawIo.ctx.lineWidth = radius * 2;
     //radSpan.innerHTML = radius;
-    radSpan.innerHTML = radius;
+    radval.innerHTML = radius;
 }
 
 
-var minRadius = 0.5,
-    maxRadius = 100,
-    defaultRadius = 20,
-    interval = 5,
-    radSpan = document.getElementById('radval'),
+var minR = 0.5,
+    maxR = 50,
+    interval = 2,   
+    radval = document.getElementById('radval'),
     decRad = document.getElementById('decrad'),
     incRad = document.getElementById('incrad');
 

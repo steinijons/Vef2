@@ -2,7 +2,7 @@
 
 window.drawIo = {
     shapes: [],
-    selectedShape: 'line',
+    selectedShape: 'pen',
     canvas: document.getElementById('canvas'),
     ctx: document.getElementById('canvas').getContext('2d'),
     selectElement: null, 
@@ -14,8 +14,7 @@ window.drawIo = {
         TEXT: 'text'
     }
 };
-var radius = 10,
-    dragging = false,
+var radius = 5,
     startLocation;
 
 drawIo.ctx.lineWidth = radius * 2;
@@ -32,17 +31,10 @@ $(function () {
             drawIo.shapes[i].render();
         }
     }
-    $('.tool').on('click', function () {
-        /*$('.tool').removeClass('selected');
-        $(this).addClass('selected');*/
-        console.log(drawIo.shapes);
-        drawIo.selectedShape = $(this).data('shape');
-        console.log(drawIo.selectedShape);
-    });
+
 
     //mousedown
     $('#canvas').on('mousedown', function (mouseEvent) {
-        dragging = true;
         startLocation = {x: mouseEvent.offsetX, y: mouseEvent.offsetY};
         switch(drawIo.selectedShape) {
             case drawIo.availableShapes.RECTANGLE:
@@ -67,7 +59,6 @@ $(function () {
     $('#canvas').on('mousemove', function (mouseEvent) {
         if(drawIo.selectElement) {
             if(drawIo.selectedShape == 'rectangle'){
-                drawIo.ctx.clearRect(0, 0, drawIo.canvas.width, drawIo.canvas.height);
                 drawIo.selectElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
                 drawCanvas();
             }    
@@ -81,16 +72,16 @@ $(function () {
                 drawIo.ctx.moveTo(mouseEvent.offsetX, mouseEvent.offsetY);
             } 
             if(drawIo.selectedShape == 'circle'){
-                drawIo.ctx.clearRect(0, 0, drawIo.canvas.width, drawIo.canvas.height);
                 drawIo.selectElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
-                
+                drawCanvas();  
             }
             if(drawIo.selectedShape == 'line') {
                 drawIo.ctx.beginPath();
+                drawIo.ctx.lineCap = 'round'; 
                 drawIo.ctx.moveTo(startLocation.x, startLocation.y);
                 drawIo.ctx.lineTo(mouseEvent.offsetX, mouseEvent.offsetY);                
             }      
-            drawCanvas();          
+                    
         }
     });
 
@@ -102,10 +93,12 @@ $(function () {
         if(drawIo.selectedShape == 'text') {
             var text = document.getElementById("text").value;
             drawIo.ctx.fillText(text,mouseEvent.offsetX, mouseEvent.offsetY);
+            var radius = document.getElementById('radval').innerHTML; 
+            drawIo.ctx.font = radius + 'px ' + currentFont; 
         } 
         drawIo.shapes.push(drawIo.selectElement);
         drawIo.selectElement = null;
-       // drawIo.ctx.beginPath();
+        drawIo.ctx.beginPath();
     });
 
   
