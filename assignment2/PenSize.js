@@ -13,7 +13,7 @@ var setRadius = function(newR) {
 }
 
 
-var minR = 0.5,
+var minR = 0.2,
     maxR = 50,
     interval = 2,   
     radval = document.getElementById('radval'),
@@ -21,10 +21,10 @@ var minR = 0.5,
     incRad = document.getElementById('incrad');
 
 decRad.addEventListener('click', function() {
-    setRadius(radius-interval)
+    setRadius(radius-interval);
 });
 
 incRad.addEventListener('click', function() {
-    setRadius(radius+interval)
+    setRadius(radius+interval);
 });
 
