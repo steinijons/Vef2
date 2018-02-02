@@ -7,7 +7,7 @@
   <body style='margin: 0'>
     <div id='toolbar'>
       <div id='rad'>
-        Radius <span id='radval'>10</span>
+        Size <span id='radval'>5</span>
         <div id='decrad' class='radcontrol'>-</div>
         <div id='incrad' class='radcontrol'>+</div>
         <button id="loadButton" class="buttons" type="button" name="loadButton">Load</button>
@@ -21,6 +21,7 @@
         <select id="fonts"></select>
       </div>
       <div>
+
         <select id="DrawStyle">
           <option class="tool" value="Pen">Pen</option>
           <option class="tool" value="Rectangle">Rectangle</option>
@@ -28,6 +29,13 @@
           <option class="tool" value="Line">Line</option>
           <option class="tool" value="Text">Text</option>
         </select>
+
+        <select id="DrawStyle"></select>
+      </div>
+      <div id="Undo">
+          <button id="undoButton" class="buttons" >Undo</button>
+          <button id="redoButton" class="buttons">Redo</button>
+      </div>
       </div>
     </div>
     </div>
@@ -36,8 +44,8 @@
         <option class="tool" data-shape="rectangle" value="Rectangle">Rectangle</option>
       </select>
       <p>Enter the text here first</p>
-      <input id="text" type="text" name="text" value="My Text."><br>
-      <p>Then click on the canvas to draw the text.</p>
+      <input id="textbox" type="text" name="text" value="My Text."><br>
+      <p>Then click on the canvas to draw the text</p>
     </div>
 
     <canvas id='canvas' style='display: block;' width="800" height="600">
@@ -49,6 +57,8 @@
     <script src='PenSize.js' charset="utf-8"></script>
     <script src='colors.js' charset="utf-8"></script>
     <script src='text.js' charset="utf-8"></script>
-    <script src='toolSelect.js' charset="utf-8"></script>
+    <script src='SaveLoad.js' charset="utf-8"></script>
+    <script src='UndoRedo.js' charset="utf-8"></script>
+    <script src='ToolSelect.js' charset="utf-8"></script>
   </body>
 </html>

@@ -3,10 +3,6 @@ var context = canvas.getContext('2d');
 
 var radius = 10;
 var dragging = false;
-
-
-
-
 /*hafa þetta í html
 <canvas id='canvas' width='400' height='400'>
 */
