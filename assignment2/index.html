@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
   <head>
@@ -62,3 +63,57 @@
     <script src='ToolSelect.js' charset="utf-8"></script>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Our drawing app!</title>
+    <link rel="stylesheet" href="look.css">
+  </head>
+  <body style='margin: 0'>
+    <div id='toolbar'>
+      <div id='rad'>
+        Size <span id='radval'>5</span> 
+        <div id='decrad' class='radcontrol'>-</div>
+        <div id='incrad' class='radcontrol'>+</div>
+        <button id="loadButton" type="button" name="loadButton">Load</button>
+        <button id="saveButton" type="button" name="saveButton">Save</button>
+        <button type="button"  name="saveAsButton">
+          <a href="#" id="saveAsButton" name="saveAsLink">Save as...</a>
+        </button>
+      </div>
+      <div id="colors"></div>
+      <div>
+        <select id="fonts"></select>
+      </div>
+      <div>
+        <select id="DrawStyle"></select> 
+      </div> 
+      <div id="Undo"> 
+          <button id="undoButton">Undo</button> 
+          <button id="redoButton">Redo</button> 
+      </div> 
+      </div>
+    </div>
+    </div>
+     
+      <p>Enter the text here first</p>
+      <input id="textbox" type="text" name="text" value="My Text."><br>
+      <p>Then click on the canvas to draw the text.</p>
+    </div>
+
+    <canvas id='canvas' style='display: block;' width="800" height="600">
+        Browser not supported
+    </canvas>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js' charset="utf-8"></script>
+    <script src='shapes.js' charset="utf-8"></script>
+    <script src='drawIo.js' charset="utf-8"></script>
+    <script src='PenSize.js' charset="utf-8"></script>
+    <script src='colors.js' charset="utf-8"></script>
+    <script src='text.js' charset="utf-8"></script>
+    <script src='SaveLoad.js' charset="utf-8"></script>
+    <script src='UndoRedo.js' charset="utf-8"></script>
+    <script src='ToolSelect.js' charset="utf-8"></script>
+  </body>
+</html>
+>>>>>>> d2e45ba4288aab2e4055cbfae299c3040bdf7b8d
