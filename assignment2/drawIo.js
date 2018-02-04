@@ -90,16 +90,18 @@ $(function () {
             drawIo.ctx.stroke();
         }
         if(drawIo.selectedShape == 'text') {
-            var text = document.getElementById("text").value;
-            drawIo.ctx.fillText(text,mouseEvent.offsetX, mouseEvent.offsetY);
             var radius = document.getElementById('radval').innerHTML;
+            var text = document.getElementById("textbox").value;
             drawIo.ctx.font = radius + 'px ' + currentFont;
+            drawIo.ctx.fillText(text,mouseEvent.offsetX, mouseEvent.offsetY);
+
         }
         drawIo.shapes.push(drawIo.selectElement);
         drawIo.selectElement = null;
         drawIo.ctx.beginPath();
-    });
 
+        console.log(drawIo.shapes);
+    });
 
 
 });

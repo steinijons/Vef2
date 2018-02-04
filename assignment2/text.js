@@ -1,4 +1,5 @@
 var fonts = ['Arial', 'calibri', 'Century Gothic', 'Comis Sans', 'Consolas', 'Courier', 'Dejavu Sans','Dejavu Serif'];
+var currentFont;
 
 for(var i = 0; i < fonts.length; i++) {
     var fontElem = document.createElement('option');
@@ -14,5 +15,5 @@ var fontSelector = document.getElementById('fonts');
 fontSelector.addEventListener('click', setActiveFont);
 
 function setActiveFont(e){
-    currentFont = e.target.value;
+   currentFont = e.target.value;
 }

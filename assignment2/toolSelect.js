@@ -14,14 +14,5 @@ var tool = document.getElementById('DrawStyle');
 tool.addEventListener('click', setTool);
 
 function setTool(e) {
-    /*if(e.target.value == 'text'){
-        //var textBoxAppear = document.createElement('input');
-        //textBoxAppear.id = 'text';
-        //textBoxAppear.type = 'text';
-        textBoxAppear.name = 'text';
-        textBoxAppear.value = 'Insert text here';
-        document.getElementById('textbox').appendChild(textBoxAppear);
-    }     */
-
     drawIo.selectedShape = e.target.value;
 }

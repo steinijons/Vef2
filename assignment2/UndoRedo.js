@@ -7,6 +7,8 @@ undo.addEventListener('click', undolastElem);
 
 document.getElementById('redoButton').addEventListener('click', redoelement);
 
+document.getElementById('New Picture').addEventListener('click', newPic);
+
 function undolastElem(e) {
     console.log("before undo " + drawIo.shapes);
 
@@ -40,4 +42,9 @@ function redoelement() {
     for(var i = 0; i < drawIo.shapes.length; i++) {
         drawIo.shapes[i].render();
     }
+}
+
+function newPic() {
+    drawIo.shapes = [];
+    drawIo.ctx.clearRect(0, 0, drawIo.canvas.width, drawIo.canvas.height);
 }

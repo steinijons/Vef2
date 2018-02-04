@@ -8,7 +8,6 @@
   -moz-user-select: none;
   -m-user-select: none;
   font-size: 10px;
-
 }
 body {
   background-color:#4E9FC1;
@@ -33,12 +32,10 @@ select {
   border: none;
   background-color: #4E9FC1;
   width: 100px;
-  font-weight: bold;
   font-size: 18px;
   color: white;
   margin-top: 10px;
-  }
-
+}
 button:hover {
   background-color: white;
   color: #4E9FC1;
@@ -58,7 +55,6 @@ button:hover {
   flex-direction: column;
   padding-left: 20px;
 }
-
 #textbox {
   width: 100px;
   height: 30px;
@@ -93,7 +89,6 @@ button:hover {
 #toolbar > :nth-child(2) {
   margin-left: auto;
 }
-
 #saveAsButton {
   font-size: 18px;
   color: white;
@@ -129,7 +124,6 @@ button:hover {
   color: white;
   line-height: 24px;
 }
-
 .swatch {
   display: flex;
   justify-content: flex-start;
@@ -143,10 +137,8 @@ button:hover {
   margin-right: 15px;
   background-color: cyan;
   cursor: pointer;
-
 }
-
 .swatch.active {
-    border: 2px solid white;
-    box-shadow: insert 0px 1px 2px,  rgba(0,0,0,0.5);
+  border: 2px solid white;
+  box-shadow: insert 0px 1px 2px,  rgba(0,0,0,0.5);
 }
