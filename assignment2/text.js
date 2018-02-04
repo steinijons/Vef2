@@ -1,4 +1,3 @@
-
 var fonts = ['Arial', 'calibri', 'Century Gothic', 'Comis Sans', 'Consolas', 'Courier', 'Dejavu Sans','Dejavu Serif'];
 
 for(var i = 0; i < fonts.length; i++) {
@@ -7,14 +6,13 @@ for(var i = 0; i < fonts.length; i++) {
     fontElem.value = fonts[i];
     //fontElem.addEventListener('onclick', setActiveFont);
     fontElem.innerHTML = fonts[i];
-    document.getElementById('fonts').appendChild(fontElem);    
+    document.getElementById('fonts').appendChild(fontElem);
 }
 
 
-var fontSelector = document.getElementById('fonts'); 
+var fontSelector = document.getElementById('fonts');
 fontSelector.addEventListener('click', setActiveFont);
 
-function setActiveFont(e){   
-    currentFont = e.target.value; 
+function setActiveFont(e){
+    currentFont = e.target.value;
 }
-
