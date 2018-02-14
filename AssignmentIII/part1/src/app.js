@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Container from './components/Container/Container';
 import '../styles/site';
+import Container from './components/Container/Container';
 
 class App extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class App extends React.Component {
     render() {
         return (
             <Container>
-                <h2>I am a title</h2>
+              <h2>Hello love</h2>
             </Container>
         );
     }
@@ -18,3 +18,4 @@ class App extends React.Component {
 
 
 ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<Adduser />, document.getElementById(''))
