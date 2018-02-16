@@ -1,21 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { PropTypes } from 'prop-types';
+import socketClient from 'socket.io-client';
+import ChatWindow from './components/ChatWindow/ChatWindow';
 import '../styles/site';
-import Container from './components/Container/Container';
 
 class App extends React.Component {
+
+    getChildContext() {
+        return {
+            socket: socketClient('http://localhost:8080')
+        }
+    }
     constructor(props) {
         super(props);
     }
     render() {
         return (
-            <Container>
-              <h2>Hello love</h2>
-            </Container>
+            <ChatWindow/>
         );
     }
-}
+};
 
+App.childContextTypes = {
+    socket: PropTypes.object.isRequired
+};
 
 ReactDOM.render(<App />, document.getElementById('app'));
-ReactDOM.render(<Adduser />, document.getElementById(''))
