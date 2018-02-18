@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { PropTypes } from 'prop-types';
 import socketClient from 'socket.io-client';
-import ChatWindow from './components/ChatWindow/ChatWindow';
 import '../styles/site';
+import ChatWindow from './components/ChatWindow/ChatWindow';
+import ChatRoom from './components/ChatRoom/ChatRoom';
+import Login from './components/Login/Login';
 
 class App extends React.Component {
 
@@ -12,16 +14,16 @@ class App extends React.Component {
             socket: socketClient('http://localhost:8080')
         }
     }
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
-            <ChatWindow/>
+            <div className="container">
+                <Login/>
+                <ChatRoom/>
+                <ChatWindow/>
+            </div>
         );
-    }
+    };
 };
-
 App.childContextTypes = {
     socket: PropTypes.object.isRequired
 };
