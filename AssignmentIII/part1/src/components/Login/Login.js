@@ -6,19 +6,30 @@ class Login extends React.Component {
         super(props);
         this.state = {
             nickname: '',
-            err: '',
+            error: ''
         };
+        this.submitHandler = this.submitHandler.bind(this);
     }
     // Handles input from user
+    // reference: piazza https://piazza.com/class/jbzjs3mbfgb4oq?cid=129
     submitHandler() {
+        event.preventDefault();
         const {socket} = this.context;
         const {nickname} = this.state;
         // emits the nickname from user, error = empty string
-        socket.emit('adduser', {nickname: this.state, err: ''});
-    }
+        socket.emit('adduser', nickname, function (available) {
+            if(available) {
+                console.log('avaliable!');
+                this.setState({nickname, error: ''});
+            } else {
+                console.log('sorry stína');
+            }
+        }.bind(this));
+        console.log(nickname);
+    };
 
     render() {
-        const {nickname, err} = this.state;
+        const {nickname} = this.state;
         return (
             <div className="login-window">
                 <div className="input-box">
@@ -29,6 +40,8 @@ class Login extends React.Component {
                         value={nickname}
                         onInput={n => this.setState({nickname: n.target.value})}/>
                     <button type="button" className="btn pull-rigth" onClick={()=> this.submitHandler()}>Submit</button>
+                    <div>
+                    </div>
                 </div>
             </div>
         );
