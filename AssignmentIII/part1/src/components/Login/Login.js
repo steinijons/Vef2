@@ -23,26 +23,31 @@ class Login extends React.Component {
                 this.setState({nickname, error: ''});
             } else {
                 console.log('sorry stína');
+                this.setState({ error: 'Nick in use. Find another one!'});
             }
         }.bind(this));
         console.log(nickname);
     };
 
     render() {
-        const {nickname} = this.state;
+        const {nickname, error} = this.state;
+
         return (
             <div className="login-window">
                 <div className="input-box">
                     <input
+                        id="nick"
                         type="text"
                         className="input input-big"
                         placeholder="Nickname here..."
                         value={nickname}
                         onInput={n => this.setState({nickname: n.target.value})}/>
                     <button type="button" className="btn pull-rigth" onClick={()=> this.submitHandler()}>Submit</button>
-                    <div>
-                    </div>
                 </div>
+                // if not empty string then display error
+                {error !== '' &&
+                    <span>{error}</span>
+                }
             </div>
         );
     }
