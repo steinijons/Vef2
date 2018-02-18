@@ -19,7 +19,7 @@ class ChatWindow extends React.Component {
             messages: []
         };
     }
-    sendmsg() {
+    sendMessage() {
         const { socket } = this.context;
         socket.emit('msg', this.state.msg);
         this.setState({ msg: '' });
@@ -36,7 +36,7 @@ class ChatWindow extends React.Component {
                         value={msg}
                         className="input input-big"
                         onInput={(e) => this.setState({ msg: e.target.value })} />
-                    <button type="button" className="btn pull-right" onClick={() => this.sendmsg()}>Send</button>
+                    <button type="button" className="btn pull-right" onClick={() => this.sendMessage()}>Send</button>
                 </div>
             </div>
         );

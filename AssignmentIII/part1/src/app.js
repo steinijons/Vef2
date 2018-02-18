@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import { PropTypes } from 'prop-types';
 import '../styles/site.less';
 import socketClient from 'socket.io-client';
+import '../styles/site';
 import ChatWindow from './components/ChatWindow/ChatWindow';
+import ChatRoom from './components/ChatRoom/ChatRoom';
+import Login from './components/Login/Login';
 import RoomList from './components/ChatRooms/RoomList/RoomList';
 
 class App extends React.Component {
@@ -18,13 +21,14 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                <ChatWindow />
-                <RoomList />
+                <Login/>
+                <ChatRoom/>
+                <RoomList/>
+                <ChatWindow/>
             </div>
         );
-    }
+    };
 };
-
 App.childContextTypes = {
     socket: PropTypes.object.isRequired
 };

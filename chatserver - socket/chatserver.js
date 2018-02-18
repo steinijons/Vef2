@@ -18,9 +18,11 @@ rooms.lobby.setTopic("Welcome to the lobby!");
 
 io.on('connection', function (socket) {
 	//console.log(socket);
+	socket.on('msg', function (message) {
+		console.log(message);
+	});
 	//This gets performed when a user joins the server.
 	socket.on('adduser', function(username, fn){
-
 		//Check if username is avaliable.
 		if (users[username] === undefined && username.toLowerCase != "server" && username.length < 21) {
 			socket.username = username;
@@ -102,7 +104,9 @@ io.on('connection', function (socket) {
 	socket.on('sendmsg', function (data) {
 
 		var userAllowed = false;
-
+		
+		console.log(data);
+		
 		//Check if user is allowed to send message.
 		if(rooms[data.roomName].users[socket.username] !== undefined) {
 			userAllowed = true;
