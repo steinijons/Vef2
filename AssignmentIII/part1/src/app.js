@@ -7,6 +7,7 @@ import '../styles/site';
 import ChatWindow from './components/ChatWindow/ChatWindow';
 import ChatRoom from './components/ChatRoom/ChatRoom';
 import Login from './components/Login/Login';
+import UserList from './components/ChatRoom/UserList/UserList';
 
 class App extends React.Component {
     componentDidCatch(error, info) {
@@ -23,6 +24,7 @@ class App extends React.Component {
                 <Login/>
                 <ChatRoom/>
                 <ChatWindow/>
+                <UserList/>
             </div>
         );
     };

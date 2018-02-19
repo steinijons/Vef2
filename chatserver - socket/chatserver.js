@@ -20,10 +20,12 @@ io.on('connection', function (socket) {
 	//console.log(socket);
 	socket.on('msg', function (message) {
 		console.log(message);
+		io.emit('msg', message);
 	});
 	//This gets performed when a user joins the server.
 	socket.on('adduser', function(username, fn){
 		//Check if username is avaliable.
+		console.log(username);
 		if (users[username] === undefined && username.toLowerCase != "server" && username.length < 21) {
 			socket.username = username;
 
@@ -54,7 +56,14 @@ io.on('connection', function (socket) {
 				rooms[room].setPassword(pass);
 			}
 			//Keep track of the room in the user object.
+			
+			
+			
 			users[socket.username].channels[room] = room;
+			
+			
+			
+			
 			//Send the room information to the client.
 			fn(true);
 			io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops);
@@ -89,7 +98,13 @@ io.on('connection', function (socket) {
 				//Add user to room.
 				rooms[room].addUser(socket.username);
 				//Keep track of the room in the user object.
-				users[socket.username].channels[room] = room;
+				
+				
+				
+				//users[socket.username].channels[room] = room;
+				
+				
+				
 				//Send the room information to the client.
 				io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops);
 				socket.emit('updatechat', room, rooms[room].messageHistory);
@@ -257,6 +272,7 @@ io.on('connection', function (socket) {
 	//Returns a list of all avaliable rooms.
 	socket.on('rooms', function() {
 		socket.emit('roomlist', rooms);
+		console.log(rooms);
 	});
 
 	//Returns a list of all connected users.
