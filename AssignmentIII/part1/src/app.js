@@ -22,8 +22,8 @@ class App extends React.Component {
         return (
             <div className="container">
                 <Login/>
-                <ChatRoom/>
                 <RoomList/>
+                <ChatRoom/>
                 <ChatWindow/>
             </div>
         );

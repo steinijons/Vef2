@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
@@ -26,7 +27,6 @@ class ChatWindow extends React.Component {
     }
     render() {
         const { messages, msg } = this.state;
-        console.log(messages);
         return (
             <div className="chat-window">
                 {messages.map(m => ( <div key={m}>{m}</div> ))}

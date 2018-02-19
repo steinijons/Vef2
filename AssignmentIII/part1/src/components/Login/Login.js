@@ -42,9 +42,8 @@ class Login extends React.Component {
                         placeholder="Nickname here..."
                         value={nickname}
                         onInput={n => this.setState({nickname: n.target.value})}/>
-                    <button type="button" className="btn pull-rigth" onClick={()=> this.submitHandler()}>Submit</button>
+                    <button type="submit" className="btn" onClick={()=> this.submitHandler()}>Submit</button>
                 </div>
-                // if not empty string then display error
                 {error !== '' &&
                     <span>{error}</span>
                 }

@@ -31,6 +31,7 @@ class RoomList extends React.Component {
                     {listRooms.map(l => (<li key={l}>{l}</li> ))}
                 </ul>
                 <div className="input-form">
+                <h2>rooms</h2>
                     <form>
                         <input
                             type="text"
@@ -38,7 +39,7 @@ class RoomList extends React.Component {
                             value={roomlist}
                             className="input-form"
                             onInput={(e) => this.setState({ roomlist: e.target.value})} />
-                        <button type="submit" className="btn" onClick={() => this.sendMessage()}>Create</button>
+                        <button type="submit" className="btn" onClick={() => this.showList()}>Create</button>
                     </form>
                 </div>
             </div>
