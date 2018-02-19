@@ -4,15 +4,19 @@ import { PropTypes } from 'prop-types';
 
 class ChatRoom extends React.Component {
 
+
+    /*socket.on('rooms', function() {
+		socket.emit('roomlist', rooms);
+		console.log(rooms);
+	});*/
+
     componentDidMount() {
         const { socket } = this.context;
-        console.log('List of Rooms');
-        socket.on('roomlist', (room) => {
+        socket.on('roomlist', (rooms) => {
             console.log('Oh, squiggly line in my eye fluid.');
-            let rooms = Object.assign([], this.state.listRooms);
-            rooms.push(room);
-            this.setState({ rooms })
-        });
+            this.setState({listRooms: rooms});
+        })
+        socket.emit('rooms');
     }
     constructor(props) {
         super(props);
@@ -28,19 +32,20 @@ class ChatRoom extends React.Component {
         socket.emit('joinroom', {room: this.state.room, pass: this.state.pass}, (loggedIn) => {
             console.log(loggedIn);
         });
+        socket.emit('rooms');
     }
     render() {
-        const { listRooms } = this.state.listRooms;
-        console.log(rooms);
-        var rooms = this.state.listRooms.length ? listRooms.map(m => (<div> {m} </div>)) : '';
         return (
             <div className="room-Window">
-                <input type = "text"  onInput = {(e) => this.setState({room: e.target.value})} />
-                <button input="button" onClick={() => this.enterRoom()}>Rooms</button>
-                <div>
-                    { rooms }
-                </div>
+                <ul>
+                    {Object.keys(this.state.listRooms).map(function(key) {
+                        return <li key={key}>{key}</li>;
+                    })}
+                </ul>
+                <input className="input-box" type = "text"  onInput = {(e) => this.setState({room: e.target.value})} />
+                <button className="btn" input="button" onClick={() => this.enterRoom()}>Rooms</button>
             </div>
+
         );
     }
 };

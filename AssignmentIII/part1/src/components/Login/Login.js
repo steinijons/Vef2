@@ -21,6 +21,7 @@ class Login extends React.Component {
             if(available) {
                 console.log('avaliable!');
                 this.setState({nickname, error: ''});
+
             } else {
                 console.log('sorry stína');
                 this.setState({ error: 'Nick in use. Find another one!'});
