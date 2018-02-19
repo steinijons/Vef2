@@ -1,12 +1,16 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import UserList from '../ChatRoom/UserList/UserList';
+import ChatWindow from '../ChatWindow/ChatWindow';
+import ChatRoom from '../ChatRoom/ChatRoom';
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             nickname: '',
-            error: ''
+            error: '',
+            loggedIn: false
         };
         this.submitHandler = this.submitHandler.bind(this);
     }
@@ -14,13 +18,15 @@ class Login extends React.Component {
     // reference: piazza https://piazza.com/class/jbzjs3mbfgb4oq?cid=129
     submitHandler() {
         event.preventDefault();
-        const {socket} = this.context;
+        let {socket} = this.context;
         const {nickname} = this.state;
+        if (nickname === '') return;
         // emits the nickname from user, error = empty string
         socket.emit('adduser', nickname, function (available) {
             if(available) {
                 console.log('avaliable!');
                 this.setState({nickname, error: ''});
+                this.setState({loggedIn: true});
 
             } else {
                 console.log('sorry stína');
@@ -31,25 +37,39 @@ class Login extends React.Component {
     };
 
     render() {
-        const {nickname, error} = this.state;
+        const {nickname, error, loggedIn} = this.state;
 
-        return (
-            <div className="login-window">
-                <div className="input-box">
+        return [
+            <div className="login-window" key="login1">
+                {error !== '' &&
+                    <span className="error-in-header">{error}</span>
+                }
+                {!loggedIn && <div className="input-container">
                     <input
                         id="nick"
                         type="text"
-                        className="input input-big"
+                        className="input-box"
                         placeholder="Nickname here..."
                         value={nickname}
                         onInput={n => this.setState({nickname: n.target.value})}/>
-                    <button type="submit" className="btn" onClick={()=> this.submitHandler()}>Submit</button>
+                    <button
+                        id="nickInput"
+                        type="submit"
+                        className="btn"
+                        onClick={()=> this.submitHandler()}>
+                            Connect
+                    </button>
                 </div>
-                {error !== '' &&
-                    <span>{error}</span>
                 }
+                {loggedIn && <span className="logged-in-text">Logged in as {nickname}</span>}
+
+            </div>,
+            loggedIn && <div className="main-row" key="login2">
+                <ChatRoom />
+                <ChatWindow />
+                <UserList />
             </div>
-        );
+        ];
     }
 };
 Login.contextTypes = {

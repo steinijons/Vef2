@@ -1,16 +1,19 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+//import { enterRoom } from './ChatRoom';
 
 class UserList extends React.Component {
 
     componentDidMount() {
         const { socket } = this.context;
         console.log('List of users');
-        socket.on('userlist', (user) => {
-            let users = Object.assign([], this.state.listUsers);
-            users.push(user);
-            this.setState({ users })
-        });
+        socket.on('userlist', (users) => {
+            //let users = Object.assign([], this.state.listUsers);
+            //users.push(`${user}`);
+            console.log('The user has been added to list');
+            this.setState({ listUsers: users });
+        })
+        socket.emit('users');
     }
     constructor(props) {
         super(props);
@@ -19,19 +22,28 @@ class UserList extends React.Component {
             listUsers: []
         };
     }
+
     showList() {
         const { socket } = this.context;
-        socket.emit('userlist', (loggedIn) => {
-            console.log(loggedIn);
+        socket.emit('userlist', (userlist) => {
+            console.log(userlist);
         });
+        socket.emit('users');
     }
+
     render() {
-        const { listUsers } = this.state.listUsers;
-        console.log(users);
-        var users = this.state.listUsers.length ? listUsers.map(m => (<div> {m} </div>)) : '';
+        console.log(this.state.listUsers.Object);
         return (
             <div className="user-list">
-                { users }
+                <ul className="ul-list">
+                    {this.state.listUsers.map(function(key) {
+                        return <li className="list-item" key={key}>{key}</li>;
+                    })}
+                </ul>
+                <div className="input-container">
+                    <div />
+                    <button type="button" className="btn" onClick={() => this.showList()}>Refresh user list</button>
+                </div>
             </div>
         );
     }

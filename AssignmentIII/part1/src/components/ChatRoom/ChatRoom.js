@@ -37,13 +37,15 @@ class ChatRoom extends React.Component {
     render() {
         return (
             <div className="room-Window">
-                <ul>
+                <ul className="ul-list">
                     {Object.keys(this.state.listRooms).map(function(key) {
-                        return <li key={key}>{key}</li>;
+                        return <li className="list-item" key={key}>{key}</li>;
                     })}
                 </ul>
-                <input className="input-box" type = "text"  onInput = {(e) => this.setState({room: e.target.value})} />
-                <button className="btn" input="button" onClick={() => this.enterRoom()}>Rooms</button>
+                <div className="input-container">
+                    <input className="input-box" type="text"  onInput= {(e) => this.setState({room: e.target.value})} />
+                    <button className="btn" input="button" onClick={() => this.enterRoom()}>Add room</button>
+                </div>
             </div>
 
         );
