@@ -10,8 +10,8 @@ class ChatWindow extends React.Component {
         });
     }
     componentDidUpdate() {
-            const messageContainer = document.getElementById('messages');
-            messageContainer.scrollTop = messageContainer.scrollHeight;
+        const messageContainer = document.getElementById('messages');
+        messageContainer.scrollTop = messageContainer.scrollHeight;
     }
     constructor(props) {
         super(props);
