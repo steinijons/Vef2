@@ -1,41 +1,38 @@
-
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-
 class ChatWindow extends React.Component {
+
     componentDidMount() {
-        // Register emission handler
         const { socket } = this.context;
-        socket.on('msg', (msg)=> {
-            // Update the message state
-            let messages = Object.assign([], this.state.messages);
-            messages.push(`${(new Date()).toLocaleTimeString()} - ${msg} `) ;
-            this.setState({ messages });
+        socket.on('updatechat', (room, messageObj) => {
+            this.setState({messages: messageObj});
         });
     }
+
     constructor(props) {
         super(props);
         this.state = {
-            nickname: '',
             msg: '',
-            messages: []
+            messages: [],
+            roomName: '',
         };
     }
-    sendMessage() {
+
+    sendMessage () {
         const { socket } = this.context;
-        socket.emit('msg', this.state.msg);
-        this.setState({ msg: '' });
+        const data = {msg: this.state.msg, roomName: this.state.roomName};
+        socket.emit('sendmsg', data);
+        this.setState({msg: '' });
     }
     render() {
-        const { messages, msg } = this.state;
         return (
             <div className="chat-window">
-                {messages.map(m => ( <div key={m}>{m}</div> ))}
+                {this.state.messages.map(m => ( <div key={m.nick}>{new Date().toLocaleTimeString()} - {m.nick}: {m.message}</div> ))}
                 <div className="input-box">
                     <input
                         type="text"
-                        value={msg}
+                        value={this.state.msg}
                         className="input input-big"
                         onInput={(e) => this.setState({ msg: e.target.value })} />
                     <button type="button" className="btn pull-right" onClick={() => this.sendMessage()}>Send</button>
