@@ -1,5 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import PrivMsg from '../../PrivMsg/PrivMsg';
+
 //import { enterRoom } from './ChatRoom';
 
 class UserList extends React.Component {
@@ -30,16 +32,18 @@ class UserList extends React.Component {
     render() {
         return (
             <div className="user-list">
+                <div className="input-container">
+                    <div />
+                    <button type="button" className="btn" onClick={() => this.showList()}>Refresh user list</button>
+                </div>
                 <ul className="ul-list">
                     {this.state.listUsers.map(function(key) {
                         return <li className="list-item" key={key}>{key}</li>;
                     })}
                 </ul>
-                <div className="input-container">
-                    <div />
-                    <button type="button" className="btn" onClick={() => this.showList()}>Refresh user list</button>
-                </div>
+                <PrivMsg />
             </div>
+
         );
     }
 }
@@ -49,4 +53,3 @@ UserList.contextTypes = {
 };
 
 export default UserList;
-
