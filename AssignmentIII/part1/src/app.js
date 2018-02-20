@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { PropTypes } from 'prop-types';
 import '../styles/site.less';
 import socketClient from 'socket.io-client';
+import '../styles/site';
 import Login from './components/Login/Login';
 
 class App extends React.Component {
