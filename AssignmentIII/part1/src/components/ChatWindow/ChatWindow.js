@@ -1,17 +1,12 @@
-
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-
 class ChatWindow extends React.Component {
+
     componentDidMount() {
-        // Register emission handler
         const { socket } = this.context;
-        socket.on('msg', (msg)=> {
-            // Update the message state
-            let messages = Object.assign([], this.state.messages);
-            messages.push(`${(new Date()).toLocaleTimeString()} - ${msg} `) ;
-            this.setState({ messages });
+        socket.on('updatechat', (room, messageObj) => {
+            this.setState({messages: messageObj});
         });
     }
     componentDidUpdate() {
@@ -21,27 +16,28 @@ class ChatWindow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            nickname: '',
             msg: '',
-            messages: []
+            messages: [],
+            roomName: '',
         };
     }
-    sendMessage() {
+
+    sendMessage () {
         const { socket } = this.context;
-        socket.emit('msg', this.state.msg);
-        this.setState({ msg: '' });
+        const data = {msg: this.state.msg, roomName: 'eyjar.is'};
+        socket.emit('sendmsg', data);
+        this.setState({msg: '' });
     }
     render() {
-        const { messages, msg } = this.state;
         return (
             <div className="chat-window">
-                <div id="messages" className="chat-messages">
-                    {messages.map(m => ( <div key={m}>{m}</div> ))}
-                </div>
+            <div id="messages" className="chat-messages">
+                {this.state.messages.map(m => ( <div key={m.nick}>{new Date().toLocaleTimeString()} - {m.nick}: {m.message}</div> ))}
+            </div>
                 <div className="input-container">
                     <input
                         type="text"
-                        value={msg}
+                        value={this.state.msg}
                         className="input-box"
                         onInput={(e) => this.setState({ msg: e.target.value })} />
                     <button type="button" className="btn" onClick={() => this.sendMessage()}>Send</button>

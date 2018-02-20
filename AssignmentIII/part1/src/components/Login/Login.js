@@ -31,8 +31,8 @@ class Login extends React.Component {
                 console.log('avaliable!');
                 this.setState({nickname, error: ''});
                 this.setState({loggedIn: true});
-
-            } else {
+            }
+            else {
                 console.log('sorry stína');
                 this.setState({ error: 'Nick in use. Find another one!'});
             }
@@ -65,11 +65,9 @@ class Login extends React.Component {
                         type="submit"
                         className="btn"
                         onClick={()=> this.submitHandler()}>
-                            {!loggedIn ? 'Connect' : 'Disconnect'}
+                        {!loggedIn ? 'Connect' : 'Disconnect'}
                     </button>
-
-            </div>
-
+                </div>
             </div>,
             loggedIn && <div className="main-row" key="login2">
                 <ChatRoom />

@@ -26,7 +26,9 @@ body {
             padding: 5px 10px;
             margin-left: 10px;
             outline: none;
+            cursor: pointer;
         }
+
     }
 
     .login-window {
@@ -64,9 +66,12 @@ body {
             flex-grow: 1;
             padding: 10px;
         }
-
         .room-Window{
+            li {
+                padding: 15px;
+            }
             background-color: #ddd;
+
 
         }
         .chat-window {
@@ -88,8 +93,19 @@ body {
             padding: 10px;
 
             .list-item {
-                padding: 2px 0;
-                font-size: 18px;
+                border-radius: 5px;
+                padding: 15px 15px;
+                font-size: 24px;
+                color: #333;
+                line-height: 20px;
+            }
+            .list-item:hover {
+                background-color: #ebeef4;
+            }
+            ul-list-button {
+                border-radius: 5px;
+                padding: 15px 15px;
+                font-size: 24px;
                 color: #333;
                 line-height: 20px;
             }

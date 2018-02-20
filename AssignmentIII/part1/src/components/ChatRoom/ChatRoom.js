@@ -13,7 +13,6 @@ class ChatRoom extends React.Component {
     componentDidMount() {
         const { socket } = this.context;
         socket.on('roomlist', (rooms) => {
-            console.log('Oh, squiggly line in my eye fluid.');
             this.setState({listRooms: rooms});
         })
         socket.emit('rooms');
@@ -32,6 +31,7 @@ class ChatRoom extends React.Component {
         socket.emit('joinroom', {room: this.state.room, pass: this.state.pass}, (loggedIn) => {
             console.log(loggedIn);
         });
+
         socket.emit('rooms');
     }
     render() {
@@ -44,7 +44,7 @@ class ChatRoom extends React.Component {
                 </ul>
                 <div className="input-container">
                     <input className="input-box" type="text"  onInput= {(e) => this.setState({room: e.target.value})} />
-                    <button className="btn" input="button" onClick={() => this.enterRoom()}>Add room</button>
+                    <button className="btn" input="button" onClick={() => this.enterRoom()}>Join room</button>
                 </div>
             </div>
 
