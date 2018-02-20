@@ -3,6 +3,8 @@ import { PropTypes } from 'prop-types';
 import UserList from '../ChatRoom/UserList/UserList';
 import ChatWindow from '../ChatWindow/ChatWindow';
 import ChatRoom from '../ChatRoom/ChatRoom';
+import PrivMsg from '../PrivMsg/PrivMsg';
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -72,6 +74,7 @@ class Login extends React.Component {
                 <ChatRoom />
                 <ChatWindow />
                 <UserList />
+                <PrivMsg />
             </div>
         ];
     }

@@ -47,6 +47,7 @@ class ChatWindow extends React.Component {
         return (
 
             <div className="chat-window">
+                <h3>{this.state.currentRoom}</h3>
                 <div id="messages"className="chat-messages">
                     {this.state.messages.map(m => ( <div key={m.timestamp}>{new Date(m.timestamp).toLocaleTimeString()} - {m.nick}: {m.message}</div> ))}
                 </div>

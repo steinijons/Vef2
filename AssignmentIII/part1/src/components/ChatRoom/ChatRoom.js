@@ -18,7 +18,7 @@ class ChatRoom extends React.Component {
         this.state = {
             room:'',
             pass:'',
-            listRooms: []
+            listRooms: [],
             
         };
     }
