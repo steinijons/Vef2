@@ -6,10 +6,10 @@ class ChatRoom extends React.Component {
 
 
     /*socket.on('rooms', function() {
-		socket.emit('roomlist', rooms);		
+		socket.emit('roomlist', rooms);
 		console.log(rooms);
 	});*/
-    
+
     componentDidMount() {
         const { socket } = this.context;
         socket.on('roomlist', (rooms) => {
@@ -17,6 +17,7 @@ class ChatRoom extends React.Component {
         })
         socket.emit('rooms');
     }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -26,12 +27,17 @@ class ChatRoom extends React.Component {
         };
     }
 
-    enterRoom() {
+    enterRoom(val) {
         const { socket } = this.context;
-        socket.emit('joinroom', {room: this.state.room, pass: this.state.pass}, (loggedIn) => {
+        socket.emit('joinroom', {room: val, pass: this.state.pass}, (loggedIn, reason) => {
             console.log(loggedIn);
+            if(!loggedIn) {
+                console.log(reason);
+            } else {
+                this.setState({room: val});
+            }
         });
-        
+
         socket.emit('rooms');
     }
     render() {
@@ -43,8 +49,8 @@ class ChatRoom extends React.Component {
                     })}
                 </ul>
                 <div className="input-container">
-                    <input className="input-box" type="text"  onInput= {(e) => this.setState({room: e.target.value})} />
-                    <button className="btn" input="button" onClick={() => this.enterRoom()}>Add room</button>
+                    <input className="input-box" type="text" value={this.props.rooms} onChange={this.props.onChange} onInput= {(e) => this.setState({room: e.target.value})} />
+                    <button className="btn" input="button" onClick={(e) => this.enterRoom(e.target.value)}>Add room</button>
                 </div>
             </div>
 
