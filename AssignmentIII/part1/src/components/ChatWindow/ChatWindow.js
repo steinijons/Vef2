@@ -6,12 +6,12 @@ class ChatWindow extends React.Component {
     componentDidMount() {
         const { socket } = this.context;
         socket.on('updatechat', (room, messageObj) => {
-            this.setState({messages: messageObj});
+            this.setState({messages: messageObj, roomName: room});
         });
     }
     componentDidUpdate() {
-        const messageContainer = document.getElementById('messages');
-        messageContainer.scrollTop = messageContainer.scrollHeight;
+            const messageContainer = document.getElementById('messages');
+            messageContainer.scrollTop = messageContainer.scrollHeight;
     }
     constructor(props) {
         super(props);
@@ -24,14 +24,15 @@ class ChatWindow extends React.Component {
 
     sendMessage () {
         const { socket } = this.context;
-        const data = {msg: this.state.msg, roomName: 'eyjar.is'};
+        const data = {msg: this.state.msg, roomName: this.state.roomName};
+        console.log(data);
         socket.emit('sendmsg', data);
         this.setState({msg: '' });
     }
     render() {
         return (
             <div className="chat-window">
-            <div id="messages" className="chat-messages">
+            <div id="messages"className="chat-messages">
                 {this.state.messages.map(m => ( <div key={m.nick}>{new Date().toLocaleTimeString()} - {m.nick}: {m.message}</div> ))}
             </div>
                 <div className="input-container">
