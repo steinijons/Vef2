@@ -8,8 +8,6 @@ class UserList extends React.Component {
         const { socket } = this.context;
         console.log('List of users');
         socket.on('userlist', (users) => {
-            //let users = Object.assign([], this.state.listUsers);
-            //users.push(`${user}`);
             console.log('The user has been added to list');
             this.setState({ listUsers: users });
         })

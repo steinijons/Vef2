@@ -10,6 +10,7 @@ body {
     .input-container {
         display: flex;
         justify-content: space-between;
+        flex-shrink: 0;
 
         .input-box {
             font-size: 12px;
@@ -70,6 +71,11 @@ body {
         }
         .chat-window {
             background-color: #fff;
+
+            .chat-messages {
+                overflow: auto;
+                margin-bottom: 10px;
+            }
         }
 
         .user-list {

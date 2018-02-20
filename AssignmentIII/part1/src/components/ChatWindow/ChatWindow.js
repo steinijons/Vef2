@@ -14,6 +14,10 @@ class ChatWindow extends React.Component {
             this.setState({ messages });
         });
     }
+    componentDidUpdate() {
+        const messageContainer = document.getElementById('messages');
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -31,14 +35,16 @@ class ChatWindow extends React.Component {
         const { messages, msg } = this.state;
         return (
             <div className="chat-window">
-                {messages.map(m => ( <div key={m}>{m}</div> ))}
-                <div className="input-box">
+                <div id="messages" className="chat-messages">
+                    {messages.map(m => ( <div key={m}>{m}</div> ))}
+                </div>
+                <div className="input-container">
                     <input
                         type="text"
                         value={msg}
-                        className="input input-big"
+                        className="input-box"
                         onInput={(e) => this.setState({ msg: e.target.value })} />
-                    <button type="button" className="btn pull-right" onClick={() => this.sendMessage()}>Send</button>
+                    <button type="button" className="btn" onClick={() => this.sendMessage()}>Send</button>
                 </div>
             </div>
         );
