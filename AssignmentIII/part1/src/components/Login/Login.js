@@ -19,8 +19,12 @@ class Login extends React.Component {
     submitHandler() {
         event.preventDefault();
         let {socket} = this.context;
-        const {nickname} = this.state;
+        const {nickname, loggedIn} = this.state;
         if (nickname === '') return;
+        if (loggedIn) {
+            this.setState({loggedIn: false});
+            //TODO: kalla á server og disconnecta userinn
+        }
         // emits the nickname from user, error = empty string
         socket.emit('adduser', nickname, function (available) {
             if(available) {
@@ -44,24 +48,27 @@ class Login extends React.Component {
                 {error !== '' &&
                     <span className="error-in-header">{error}</span>
                 }
-                {!loggedIn && <div className="input-container">
-                    <input
-                        id="nick"
-                        type="text"
-                        className="input-box"
-                        placeholder="Nickname here..."
-                        value={nickname}
-                        onInput={n => this.setState({nickname: n.target.value})}/>
+                <div className="input-container">
+
+                    {!loggedIn &&
+                        <input
+                            id="nick"
+                            type="text"
+                            className="input-box"
+                            placeholder="Nickname here..."
+                            value={nickname}
+                            onInput={n => this.setState({nickname: n.target.value})}/>
+                    }
+                    {loggedIn && <span className="logged-in-text">Logged in as {nickname}</span>}
                     <button
                         id="nickInput"
                         type="submit"
                         className="btn"
                         onClick={()=> this.submitHandler()}>
-                            Connect
+                            {!loggedIn ? 'Connect' : 'Disconnect'}
                     </button>
-                </div>
-                }
-                {loggedIn && <span className="logged-in-text">Logged in as {nickname}</span>}
+
+            </div>
 
             </div>,
             loggedIn && <div className="main-row" key="login2">
