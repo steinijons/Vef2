@@ -32,9 +32,9 @@ class ChatWindow extends React.Component {
     render() {
         return (
             <div className="chat-window">
-            <div id="messages"className="chat-messages">
-                {this.state.messages.map(m => ( <div key={m.nick}>{new Date().toLocaleTimeString()} - {m.nick}: {m.message}</div> ))}
-            </div>
+                <div id="messages"className="chat-messages">
+                    {this.state.messages.map(m => ( <div key={m.nick}>{new Date().toLocaleTimeString()} - {m.nick}: {m.message}</div> ))}
+                </div>
                 <div className="input-container">
                     <input
                         type="text"
