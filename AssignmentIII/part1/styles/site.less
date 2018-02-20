@@ -3,6 +3,7 @@ body {
 }
 
 .container {
+    font-family: Trebuchet MS;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,7 +20,6 @@ body {
         .btn {
             background-color: blue;
             border: none;
-            border-radius: 2px;
             color: #fff;
             font-size: 12px;
             padding: 5px 10px;
@@ -31,11 +31,12 @@ body {
     }
 
     .login-window {
+        background-color: #98ff98;
+        font-weight: bolder;
         flex-grow: 0;
         width: 100%;
         height: 24px;
         padding: 12px 0;
-        background-color: #bbb;
         display: flex;
         justify-content: flex-end;
 
@@ -47,7 +48,12 @@ body {
             flex-grow: 0;
         }
 
-        .error-in-header, .logged-in-text {
+        .logged-in-text {
+            font-size: 18px;
+            color: white;
+            line-height: 24px;
+        }
+        .error-in-header {
             font-size: 18px;
             color: #333;
             line-height: 24px;
@@ -67,18 +73,20 @@ body {
         }
         .room-Window{
             li {
-                padding: 15px;
+                margin: 5px 0;
+                padding: 15px 0;
+                background-color: white;
+                box-shadow: inset 0px 0px 5px 5px rgba(0,0,0,0.1);
             }
-            background-color: #ddd;
-
-
         }
         .chat-window {
-            background-color: #fff;
+            border-right: 1.5px solid #ddd;
+            border-left: 1.5px solid #ddd;
+            //background-color: #fff;
         }
 
         .user-list {
-            background-color: #ddd;
+            //background-color: #ddd;
             text-align: right;
         }
 
@@ -87,7 +95,6 @@ body {
             padding: 10px;
 
             .list-item {
-                border-radius: 5px;
                 padding: 15px 15px;
                 font-size: 24px;
                 color: #333;
@@ -98,7 +105,7 @@ body {
             }
             ul-list-button {
                 border-radius: 5px;
-                padding: 15px 15px;
+                padding: 15px 0;
                 font-size: 24px;
                 color: #333;
                 line-height: 20px;
