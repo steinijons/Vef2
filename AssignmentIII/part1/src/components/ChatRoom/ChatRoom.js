@@ -50,7 +50,7 @@ class ChatRoom extends React.Component {
                 </ul>
                 <div className="input-container">
                     <input className="input-box" type="text" value={this.props.rooms} onChange={this.props.onChange} onInput= {(e) => this.setState({room: e.target.value})} />
-                    <button className="btn" input="button" onClick={(e) => this.enterRoom(e.target.value)}>Add room</button>
+                    <button className="btn" input="button" onClick={(e) => this.enterRoom(e.target.value)}>Join room</button>
                 </div>
             </div>
 
