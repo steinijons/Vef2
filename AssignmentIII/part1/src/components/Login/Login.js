@@ -65,11 +65,9 @@ class Login extends React.Component {
                         type="submit"
                         className="btn"
                         onClick={()=> this.submitHandler()}>
-                            {!loggedIn ? 'Connect' : 'Disconnect'}
+                        {!loggedIn ? 'Connect' : 'Disconnect'}
                     </button>
-
-            </div>
-
+                </div>
             </div>,
             loggedIn && <div className="main-row" key="login2">
                 <ChatRoom />
