@@ -10,6 +10,7 @@ body {
 
     .input-container {
         display: flex;
+        flex-shrink: 0;
         justify-content: space-between;
 
         .input-box {
@@ -83,6 +84,21 @@ body {
             border-right: 1.5px solid #ddd;
             border-left: 1.5px solid #ddd;
             //background-color: #fff;
+            .chat-window-upper {
+                display: flex;
+                flex-grow: 1;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            .chat-messages {
+                overflow: auto;
+                margin-bottom: 10px;
+            }
+
+            .chat-header {
+                color: #c1c6cc;
+            }
+
         }
 
         .user-list {

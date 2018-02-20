@@ -5,14 +5,24 @@ class ChatWindow extends React.Component {
 
     componentDidMount() {
         const { socket } = this.context;
-        socket.on('updatechat', (room, messageObj) => {
-            this.setState({messages: messageObj, roomName: room});
+        socket.on('roomlist', (rooms) => {
+            this.setState({listRooms: rooms});
+        })
+
+        socket.on('currRoom', (room) => {
+            this.setState({currentRoom: room});
         });
+
+        socket.on('updatechat', (room, messageObj) => {
+            this.setState({messages: messageObj});
+        });
+
     }
 
     componentDidUpdate() {
         const messageContainer = document.getElementById('messages');
         messageContainer.scrollTop = messageContainer.scrollHeight;
+
     }
 
     constructor(props) {
@@ -20,23 +30,39 @@ class ChatWindow extends React.Component {
         this.state = {
             msg: '',
             messages: [],
-            roomName: '',
+            currentRoom:'',
+            listRooms: []
         };
+    }
+
+    leaveRoom() {
+        console.log('leaveRoom');
+        const { socket } = this.context;
+        socket.emit('partroom', {room: this.state.currRoom});
     }
 
     sendMessage () {
         const { socket } = this.context;
-        console.log(this.state.roomName);
-        const data = {msg: this.state.msg, roomName: this.state.roomName};
+        socket.emit('currentRoom');
+        console.log('roomName: ' + this.state.currentRoom);
+        const data = {msg: this.state.msg, roomName: this.state.currentRoom};
+        console.log(data);
         socket.emit('sendmsg', data);
         this.setState({msg: '' });
+
     }
 
     render() {
         return (
             <div className="chat-window">
-                <div id="messages"className="chat-messages">
-                    {this.state.messages.map(m => ( <div key={m}>{new Date().toLocaleTimeString()} - {m.nick}: {m.message}</div> ))}
+                <div className="chat-window-upper">
+                    <div className="input-container">
+                        <h3 className="chat-header">{this.state.currentRoom}</h3>
+                        <button type="button" className="btn" onClick={() => this.leaveRoom()}>Leave room</button>
+                    </div>
+                    <div id="messages" className="chat-messages">
+                    {this.state.messages.map(m => ( <div key={m.timestamp}>{new Date(m.timestamp).toLocaleTimeString()} - {m.nick}: {m.message}</div> ))}
+                    </div>
                 </div>
                 <div className="input-container">
                     <input

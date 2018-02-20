@@ -1,5 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import ChatWindow from '../ChatWindow/ChatWindow';
 // Connecting to lobby
 
 class ChatRoom extends React.Component {
@@ -37,8 +38,9 @@ class ChatRoom extends React.Component {
         socket.emit('currentRoom');
         socket.emit('rooms');
     }
+
     render() {
-        return (
+        return [
             <div className="room-Window">
                 <ul className="ul-list">
                     {Object.keys(this.state.listRooms).map(function(key) {
@@ -49,9 +51,9 @@ class ChatRoom extends React.Component {
                     <input className="input-box" type="text"  onInput= {(e) => this.setState({room: e.target.value})} />
                     <button className="btn" input="button" onClick={() => this.enterRoom()}>Add/Join room</button>
                 </div>
-            </div>
-
-        );
+            </div>,
+            <ChatWindow/>
+        ];
     }
 };
 
