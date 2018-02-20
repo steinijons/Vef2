@@ -28,7 +28,6 @@ class UserList extends React.Component {
     }
 
     render() {
-        console.log(this.state.listUsers.Object);
         return (
             <div className="user-list">
                 <ul className="ul-list">

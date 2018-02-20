@@ -5,39 +5,36 @@ import { PropTypes } from 'prop-types';
 class ChatRoom extends React.Component {
 
 
-    /*socket.on('rooms', function() {
-		socket.emit('roomlist', rooms);
-		console.log(rooms);
-	});*/
-
     componentDidMount() {
         const { socket } = this.context;
         socket.on('roomlist', (rooms) => {
             this.setState({listRooms: rooms});
         })
         socket.emit('rooms');
+        socket.emit('currentRoom');
     }
-
     constructor(props) {
         super(props);
         this.state = {
             room:'',
             pass:'',
             listRooms: []
+
         };
     }
 
-    enterRoom(val) {
+    enterRoom() {
         const { socket } = this.context;
-        socket.emit('joinroom', {room: val, pass: this.state.pass}, (loggedIn, reason) => {
+        socket.emit('currentRoom');
+        socket.emit('joinroom', {room: this.state.room, pass: this.state.pass}, (loggedIn) => {
             console.log(loggedIn);
             if(!loggedIn) {
                 console.log(reason);
             } else {
-                this.setState({room: val});
+                console.log('successfull created or joined room');
             }
         });
-
+        socket.emit('currentRoom');
         socket.emit('rooms');
     }
     render() {
@@ -49,8 +46,8 @@ class ChatRoom extends React.Component {
                     })}
                 </ul>
                 <div className="input-container">
-                    <input className="input-box" type="text" value={this.props.rooms} onChange={this.props.onChange} onInput= {(e) => this.setState({room: e.target.value})} />
-                    <button className="btn" input="button" onClick={(e) => this.enterRoom(e.target.value)}>Join room</button>
+                    <input className="input-box" type="text"  onInput= {(e) => this.setState({room: e.target.value})} />
+                    <button className="btn" input="button" onClick={() => this.enterRoom()}>Add/Join room</button>
                 </div>
             </div>
 

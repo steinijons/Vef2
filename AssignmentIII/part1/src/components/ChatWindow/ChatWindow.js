@@ -9,10 +9,12 @@ class ChatWindow extends React.Component {
             this.setState({messages: messageObj, roomName: room});
         });
     }
+
     componentDidUpdate() {
         const messageContainer = document.getElementById('messages');
         messageContainer.scrollTop = messageContainer.scrollHeight;
     }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -24,16 +26,17 @@ class ChatWindow extends React.Component {
 
     sendMessage () {
         const { socket } = this.context;
+        console.log(this.state.roomName);
         const data = {msg: this.state.msg, roomName: this.state.roomName};
-        console.log(data);
         socket.emit('sendmsg', data);
         this.setState({msg: '' });
     }
+
     render() {
         return (
             <div className="chat-window">
                 <div id="messages"className="chat-messages">
-                    {this.state.messages.map(m => (<div key={m.nick}>{m.nick}: {m.message}</div> ))}
+                    {this.state.messages.map(m => ( <div key={m}>{new Date().toLocaleTimeString()} - {m.nick}: {m.message}</div> ))}
                 </div>
                 <div className="input-container">
                     <input

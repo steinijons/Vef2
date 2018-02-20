@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import UserList from '../ChatRoom/UserList/UserList';
-import ChatWindow from '../ChatWindow/ChatWindow';
+//import ChatWindow from '../ChatWindow/ChatWindow';
 import ChatRoom from '../ChatRoom/ChatRoom';
 
 class Login extends React.Component {
@@ -70,7 +70,6 @@ class Login extends React.Component {
             </div>,
             loggedIn && <div className="main-row" key="login2">
                 <ChatRoom />
-                <ChatWindow />
                 <UserList />
             </div>
         ];
