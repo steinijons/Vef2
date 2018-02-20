@@ -6,14 +6,13 @@ class ChatRoom extends React.Component {
 
 
     /*socket.on('rooms', function() {
-		socket.emit('roomlist', rooms);
+		socket.emit('roomlist', rooms);		
 		console.log(rooms);
 	});*/
-
+    
     componentDidMount() {
         const { socket } = this.context;
         socket.on('roomlist', (rooms) => {
-            console.log('Oh, squiggly line in my eye fluid.');
             this.setState({listRooms: rooms});
         })
         socket.emit('rooms');
@@ -32,6 +31,7 @@ class ChatRoom extends React.Component {
         socket.emit('joinroom', {room: this.state.room, pass: this.state.pass}, (loggedIn) => {
             console.log(loggedIn);
         });
+        
         socket.emit('rooms');
     }
     render() {
