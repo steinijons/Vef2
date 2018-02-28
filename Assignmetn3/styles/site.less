@@ -1,0 +1,139 @@
+body {
+    margin: 0;
+}
+
+.container {
+    font-family: Trebuchet MS;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .input-container {
+        display: flex;
+        flex-shrink: 0;
+        justify-content: space-between;
+
+        .input-box {
+            font-size: 12px;
+            flex-grow: 1;
+        }
+
+        .input-box + .input-box {
+            margin-left: 10px;
+        }
+
+        .btn {
+            background-color: #cdd2d8;
+            border: 1px solid #c1c6cc;
+            color: #fff;
+            font-size: 12px;
+            padding: 5px 10px;
+            margin-left: 10px;
+            outline: none;
+            cursor: pointer;
+        }
+
+    }
+
+    .login-window {
+        background-color: yellow;
+        font-weight: bolder;
+        flex-grow: 0;
+        width: 100%;
+        height: 24px;
+        padding: 12px 0;
+        display: flex;
+        justify-content: flex-end;
+
+        > * {
+            margin-right: 10px;
+        }
+
+        .input-box {
+            flex-grow: 0;
+        }
+
+        .logged-in-text {
+            font-size: 18px;
+            color: white;
+            line-height: 24px;
+        }
+        .error-in-header {
+            font-size: 18px;
+            color: #333;
+            line-height: 24px;
+        }
+    }
+
+    .main-row {
+        flex-grow: 1;
+        display: flex;
+
+        > * {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            flex-grow: 1;
+            padding: 10px;
+        }
+        .room-Window{
+            li {
+                margin: 5px 0;
+                padding: 15px 0;
+                background-color: white;
+                box-shadow: inset 0px 0px 5px 5px rgba(0,0,0,0.1);
+            }
+        }
+        .chat-window {
+            border-right: 1.5px solid #ddd;
+            border-left: 1.5px solid #ddd;
+            //background-color: #fff;
+            .chat-window-upper {
+                display: flex;
+                flex-grow: 1;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            .chat-messages {
+                overflow: auto;
+                margin-bottom: 10px;
+            }
+
+            .chat-header {
+                color: #c1c6cc;
+            }
+
+        }
+
+        .user-list {
+            //background-color: #ddd;
+            text-align: right;
+        }
+
+        .ul-list {
+            list-style: none;
+            padding: 10px;
+            overflow: auto;
+            margin-bottom: 10px;
+            flex-grow: 1;
+
+            .list-item {
+                padding: 15px 15px;
+                font-size: 24px;
+                color: #333;
+                line-height: 20px;
+            }
+            .list-item:hover {
+                background-color: #ebeef4;
+            }
+            ul-list-button {
+                border-radius: 5px;
+                padding: 15px 0;
+                font-size: 24px;
+                color: #333;
+                line-height: 20px;
+            }
+        }
+    }
+
+}
