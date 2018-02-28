@@ -1,7 +1,20 @@
 {
+    parser: "babel-eslint",
+    "plugins": [
+        "react"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
     "rules": {
         "quotes": [2, "single"],
         "strict": [2, "never"],
+        "react/jsx-uses-react": 2,
+        "react/jsx-uses-vars": 2,
+        "react/react-in-jsx-scope": 2,
+        "no-invalid-regexp": 2,
         "no-empty-function": 1,
         "no-invalid-this": 1,
         "no-self-compare": 1,
