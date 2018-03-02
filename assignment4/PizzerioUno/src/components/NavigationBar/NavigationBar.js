@@ -11,7 +11,7 @@ export default class NavigationBar extends React.Component {
         return (
             <div className="navbar">
                 <div className="nav-logo">
-                    <h2>Pizzeria Uno</h2>
+                    <h2>Logo here! Greatest pizza place in the world!</h2>
                 </div>
                 <NavigationBarLinkWrapper>
                     <NavLink
