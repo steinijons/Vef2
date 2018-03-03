@@ -4,7 +4,7 @@ import Pizza from '../Pizza/Pizza';
 import { getAllPizzas } from '../../actions/pizzaActions';
 
 class Menu extends React.Component {
-    ComponentDidMount() {
+    componentDidMount() {
         const { getAllPizzas } = this.props;
         getAllPizzas();
     }
@@ -20,6 +20,6 @@ class Menu extends React.Component {
 
 const mapStateToProps = ({ pizza }) => {
     return { pizza }
-}
+};
 
 export default connect(mapStateToProps, { getAllPizzas })(Menu);
