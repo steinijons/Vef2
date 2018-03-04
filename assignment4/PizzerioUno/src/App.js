@@ -21,6 +21,7 @@ const App = () => {
                     <Route path='/About' component={About} ></Route>
                 </Switch>
             </div>
+
         </div>
     );
 };

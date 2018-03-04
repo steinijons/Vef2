@@ -51,8 +51,15 @@
         box-shadow: 2px 2px 10px rgba(155, 155, 155, .5);
 
 }
+
+.navbar img{
+    width: 100px;
+    height: auto;
+}
+
 .nav-link-wrapper {
     float: right;
+    top: 0px;
 
 }
 .nav-link {
