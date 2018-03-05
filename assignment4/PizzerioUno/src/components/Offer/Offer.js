@@ -10,6 +10,8 @@ const Offer = ( {offer}) => {
             <div className="offer-name">{offerItem}</div>
             <div className="offer-price">{price}</div>
             <div className="offer-valid-for">{validFor}</div>
+            <button type="button" className="addPizzaToCartBtn">Add to cart</button>
+
         </div>
     );
 };

@@ -9,6 +9,7 @@ import NavigationBar from './components/NavigationBar/NavigationBar';
 import About from './components/About/About';
 import Offers from './components/Offers/Offers';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Cart from './components/Cart/Cart';
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     <Route exact path='/'component={Menu} ></Route>
                     <Route path='/Offers'component={Offers} ></Route>
                     <Route path='/About' component={About} ></Route>
+                    <Route path='/Cart' component={Cart} ></Route>
                 </Switch>
             </div>
         </div>

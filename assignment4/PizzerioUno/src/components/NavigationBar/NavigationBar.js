@@ -29,6 +29,11 @@ export default class NavigationBar extends React.Component {
                         activeClassName="active"
                         className="nav-link"
                         value="About">About Us</NavLink>
+                    <NavLink
+                        to="/Cart"
+                        activeClassName="active"
+                        className="nav-link"
+                        value="Cart">Cart</NavLink>
                 </NavigationBarLinkWrapper>
             </div>
         );
