@@ -12,12 +12,7 @@ class Offers extends React.Component {
 
     render() {
         const { offer } = this.props;
-        var propValue;
-        for (var p in offer) {
-            propValue = offer[p];
-            console.log('item',p,propValue.offerItem);
-        }
-        console.log(offer[0]);
+        //console.log(offer[0]);
         return (
             <div className="container">
                 <div className="offer">
@@ -33,4 +28,3 @@ const mapStateToProps = ({ offer }) => {
 };
 
 export default connect(mapStateToProps, { getAllOffers })(Offers);
-//{this.state.messages.map(m => ( <div key={m.timestamp}>{new Date(m.timestamp).toLocaleTimeString()} - {m.nick}: {m.message}</div> ))}

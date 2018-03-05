@@ -8,6 +8,7 @@ import Menu from './components/Menu/Menu';
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import About from './components/About/About';
 import Offers from './components/Offers/Offers';
+import PizzaDetail from './components/PizzaDetail/pizzaDetail';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 const App = () => {
@@ -16,12 +17,12 @@ const App = () => {
             <NavigationBar/>
             <div className="container">
                 <Switch>
-                    <Route exact path='/'component={Menu} ></Route>
-                    <Route path='/Offers'component={Offers} ></Route>
+                    <Route exact path='/pizzas' component={Menu} ></Route>
+                    <Route path='/pizzas/:pizzaId' component={PizzaDetail}></Route>
+                    <Route path='/Offers' component={Offers} ></Route>
                     <Route path='/About' component={About} ></Route>
                 </Switch>
             </div>
-
         </div>
     );
 };

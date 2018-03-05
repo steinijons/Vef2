@@ -23,7 +23,7 @@
             margin-bottom: 10px;
             color: black;
             text-align: center;
-            background-color: rgba(155, 155, 155, .2);
+            background-color: rgba(155, 155, 155, 0.2);
             img {
                 width: 250px;
             }
@@ -35,7 +35,9 @@
     margin: 0 auto;
     text-align: center;
     padding: 20px;
+
 }
+
 
 .pizza-wrapper .pizza-name {
     margin-top: 10px;

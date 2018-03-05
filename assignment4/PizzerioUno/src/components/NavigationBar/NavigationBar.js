@@ -14,14 +14,15 @@ export default class NavigationBar extends React.Component {
                 <NavigationBarLinkWrapper>
                     <NavLink
                         exact
-                        to="/"
+                        to="/pizzas"
                         activeClassName="active"
                         className="nav-link"
                         value="Menu">Menu</NavLink>
                     <NavLink
                         to="/Offers"
                         activeClassName="active"
-                        className="nav-link">Offers</NavLink>
+                        className="nav-link"
+                        value="Offers">Offers</NavLink>
                     <NavLink
                         to="/About"
                         activeClassName="active"

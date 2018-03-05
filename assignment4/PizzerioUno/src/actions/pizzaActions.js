@@ -3,7 +3,6 @@ import { GET_ALL_OFFERS } from '../constants/offerConstants';
 import fetch from 'isomorphic-fetch';
 
 export const getAllPizzas = () => {
-    console.log('getAllPizzas()');
     return dispatch => fetch('http://localhost:3500/api/pizzas').then(json => json.json()).then(data => dispatch(getAllPizzaSuccess(data)));
 };
 
