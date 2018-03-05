@@ -19,6 +19,7 @@ class Menu extends React.Component {
 };
 
 const mapStateToProps = ({ pizza }) => {
+    console.log({pizza});
     return { pizza }
 };
 

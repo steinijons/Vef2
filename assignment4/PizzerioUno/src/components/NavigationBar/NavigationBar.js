@@ -10,20 +10,19 @@ export default class NavigationBar extends React.Component {
     render() {
         return (
             <div className="navbar">
-                <div className="nav-logo">
-                    <h2>Logo here! Greatest pizza place in the world!</h2>
-                </div>
+                <img src='./././img/PizzaLogo1.png'/>
                 <NavigationBarLinkWrapper>
                     <NavLink
                         exact
-                        to="/"
+                        to="/pizzas"
                         activeClassName="active"
                         className="nav-link"
                         value="Menu">Menu</NavLink>
                     <NavLink
                         to="/Offers"
                         activeClassName="active"
-                        className="nav-link">Offers</NavLink>
+                        className="nav-link"
+                        value="Offers">Offers</NavLink>
                     <NavLink
                         to="/About"
                         activeClassName="active"

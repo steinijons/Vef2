@@ -1,16 +1,12 @@
 import React from 'react';
 //import { addToCart } from '../../actions/addToCartAction';
 import { connect } from 'react-redux';
+import { getAllPizzas } from '../../actions/pizzaActions';
+
 //import Pizza from '../Pizza/Pizza';
 
-const Cart = (props) => {
-    console.log('karfa: ' + props);
-    return (
-        <div className="container">
-            <p>Karfan þín</p>
-            <div className="container">{props.name}</div>
-        </div>
-    );
+class Cart extends React.Component {
+    
 };
 
 
@@ -21,4 +17,4 @@ const mapStateToProps = (reduxState) => {
     };
 };
 
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps, { getAllPizzas })(Cart);

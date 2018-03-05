@@ -23,7 +23,6 @@ class AddToCart extends React.Component {
     }
     render () {
         const { pizza } = this.props;
-        //console.log('pizzaProps:' + pizza);
         return (
             <div className="addPizzaToCartBtn">
                 <button
@@ -39,11 +38,8 @@ class AddToCart extends React.Component {
     }
 };
 
-const mapStateToProps = (reduxState) => {
-    //console.log('addtocartState: ' + reduxState.name);
-    return {
-        pizza: reduxState.pizza
-    };
+const mapStateToProps = ({ pizza }) => {
+    return { pizza }
 };
 
 export default connect(null, mapStateToProps)(AddToCart);

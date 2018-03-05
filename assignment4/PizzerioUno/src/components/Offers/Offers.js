@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Offer from '../Offer/Offer';
-import { getAllOffers } from '../../actions/offerActions';
+import { getAllOffers } from '../../actions/pizzaActions';
 
 class Offers extends React.Component {
     componentDidMount() {
-        console.log('did mount');
         const { getAllOffers } = this.props;
         getAllOffers();
     }
 
+
     render() {
         const { offer } = this.props;
+        //console.log(offer[0]);
         return (
             <div className="container">
                 <div className="offer">
