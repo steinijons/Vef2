@@ -16,7 +16,6 @@ class Pizza extends React.Component {
 
     //Stores items in localStorage
     addToCart(pizza) {
-        console.log(id);
         var oldItems = JSON.parse(localStorage.getItem('cartArray')) || [];
 
         var newItem = {
