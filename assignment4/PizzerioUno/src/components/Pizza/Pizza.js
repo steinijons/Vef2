@@ -2,7 +2,8 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-//import { addToCart } from '../../actions/addToCartAction';
+import { addToCart } from '../../actions/addToCartAction';
+//import { addToCart } from '../AddToCart/AddToCart';
 
 
 class Pizza extends React.Component {
@@ -13,8 +14,19 @@ class Pizza extends React.Component {
         };
     }
 
+    //Stores items in localStorage
     addToCart(id) {
         console.log(id);
+        var oldItems = JSON.parse(localStorage.getItem('cartArray')) || [];
+
+        var newItem = {
+            'pizza-id': id
+        };
+
+        oldItems.push(newItem);
+        console.log(oldItems);
+
+        localStorage.setItem('cartArray', JSON.stringify(oldItems));
     }
 
     render() {
