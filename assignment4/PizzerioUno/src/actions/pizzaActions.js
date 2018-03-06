@@ -23,3 +23,23 @@ const getAllOffersSuccess = (offers) => {
         payload: offers
     };
 };
+
+export const getPizzaDetailsById = (id) => {
+    return dispatch => {
+        dispatch(clearPizzaDetails());
+        return fetch(`http://localhost:3500/api/pizzas/${id}`).then(r => r.json()).then(data => data ? dispatch(getPizzaDetailsSuccess(data)) : null);
+    };
+};
+
+const getPizzaDetailsSuccess = (detail) => {
+    return {
+        type: GET_PIZZA_DETAIL,
+        payload: detail
+    };
+};
+
+export const clearPizzaDetails = () => {
+    return {
+        type: 'CLEAR_PIZZA_DETAILS'
+    };
+};

@@ -1,21 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAllPizzas } from '../../actions/pizzaActions';
+import { getPizzaDetailsById } from '../../actions/pizzaActions';
 //import { addToCart } from '../../actions/addToCartAction';
 
 class pizzaDetail extends React.Component {
 
     componentDidMount() {
         const { pizzaId } = this.props.match.params;
-        const { getAllPizzas } = this.props;
-        getAllPizzas().then(pizza => {
+
+        getPizzaDetailsById(pizzaId);
+        /*getAllPizzas().then(pizza => {
             var pizzaObjects = pizza.payload;
             for (var i=0; i < pizzaObjects.length; i++) {
                 if (parseInt(pizzaObjects[i].id) == pizzaId) {
                     this.setState({ pizzaDetail: pizzaObjects[i] });
                 }
             }
-        });
+        });*/
     }
 
     constructor(props) {
@@ -24,6 +25,7 @@ class pizzaDetail extends React.Component {
     }
 
     addToCart(id) {
+        console.log('here' + this.props);
         console.log(id);
     }
 
@@ -52,9 +54,10 @@ class pizzaDetail extends React.Component {
 };
 
 
-const mapStateToProps = ({ pizza }) => {
-    return { pizza }
+const mapStateToProps = (state) => {
+    console.log(state);
+    return { pizzaId: state.pizzaId }
 };
 
 
-export default connect(mapStateToProps, { getAllPizzas })(pizzaDetail);
+export default connect(mapStateToProps, { getPizzaDetailsById })(pizzaDetail);

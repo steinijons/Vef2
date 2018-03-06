@@ -1,11 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const About = () => {
-    return (
-        <div>
-            <p>no orders!</p>
-        </div>
-    )
+class About extends React.Component {
+
+    render () {
+        return (
+            <div>
+                <p>no orders!</p>
+            </div>
+        )
+    };
 };
 
-export default About;
+const mapStateToProps = (state) => {
+    return {state};
+};
+
+
+export default connect(mapStateToProps)(About);
