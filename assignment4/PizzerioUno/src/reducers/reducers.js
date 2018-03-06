@@ -8,5 +8,4 @@ import addToCart from './addToCartReducer';
 
 export default combineReducers({
     pizza, order, offer, addToCart, pizzaDetail
-
 });

@@ -1,11 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux';
+//import Pizza from '../Pizza/Pizza';
 
 
 const Cart = () => {
+    var oldItems = JSON.parse(localStorage.getItem('cartArray')) || [];
+
+    const listItem = oldItems.map((item) =>
+        console.log(item.pizza)
+        //<li key={item.pizza.id}>{item.pizza}</li>
+    );
     return (
-        <div>
-            <h1>My Order - Cart</h1>
+        <div className="pizza-wrapper">
+            <ul>
+                {listItem}
+            </ul>
         </div>
     );
 };

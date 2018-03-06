@@ -5,7 +5,6 @@ const addToCartReducer = (state = {}, action) => {
         case ADD_TO_CART:
             console.log('reducer: ' + action.payload.name);
             return state + action.payload;
-            //cart: [...state.cart, action.payload]
         default: return state;
     }
 }

@@ -15,12 +15,12 @@ class Pizza extends React.Component {
     }
 
     //Stores items in localStorage
-    addToCart(id) {
+    addToCart(pizza) {
         console.log(id);
         var oldItems = JSON.parse(localStorage.getItem('cartArray')) || [];
 
         var newItem = {
-            'pizza-id': id
+            pizza: pizza
         };
 
         oldItems.push(newItem);
@@ -46,7 +46,7 @@ class Pizza extends React.Component {
                     type="button"
                     className="addPizzaToCartBtn"
                     // calls addToCart with a pizza object
-                    onClick={()=>this.addToCart(pizza.id)}
+                    onClick={()=>this.addToCart(pizza)}
                 >
                     Add to cart
                 </button>

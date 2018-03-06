@@ -1,1 +1,1 @@
-export const GET_PIZZA_DETAIL = 'GET_PIZZA_DETAIL';
+export const GET_PIZZA_BY_ID = 'GET_PIZZA_BY_ID';
