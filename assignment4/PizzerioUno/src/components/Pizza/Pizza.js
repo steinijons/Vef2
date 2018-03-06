@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addToCart } from '../../actions/addToCartAction';
+//import { addToCart } from '../../actions/addToCartAction';
 
 
 class Pizza extends React.Component {
@@ -13,6 +13,9 @@ class Pizza extends React.Component {
         };
     }
 
+    addToCart(id) {
+        console.log(id);
+    }
 
     render() {
         const { pizza } = this.props;
@@ -31,7 +34,7 @@ class Pizza extends React.Component {
                     type="button"
                     className="addPizzaToCartBtn"
                     // calls addToCart with a pizza object
-                    onClick={()=>this.props.addToCart(pizza)}
+                    onClick={()=>this.addToCart(pizza.id)}
                 >
                     Add to cart
                 </button>

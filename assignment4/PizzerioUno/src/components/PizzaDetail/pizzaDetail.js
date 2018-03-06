@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getAllPizzas } from '../../actions/pizzaActions';
-//import { addToCart } from '../../actions/addToCartAction';
+//import { addToCart } from '../../actions/addToCartAction';
 
 class pizzaDetail extends React.Component {
 
@@ -23,8 +23,12 @@ class pizzaDetail extends React.Component {
         this.state = { pizzaDetail: {}};
     }
 
+    addToCart(id) {
+        console.log(id);
+    }
+
     render() {
-        const { name, description, price, image  } = this.state.pizzaDetail;
+        const { id, name, description, price, image  } = this.state.pizzaDetail;
 
         return (
             <div className="pizza-wrapper">
@@ -38,7 +42,7 @@ class pizzaDetail extends React.Component {
                     type="button"
                     className="addPizzaToCartBtn"
                     // calls addToCart with a pizza object
-                    onClick={()=>this.props.addToCart()}
+                    onClick={()=>this.addToCart(id)}
                 >
                     Add to cart
                 </button>
@@ -46,8 +50,6 @@ class pizzaDetail extends React.Component {
         )
     }
 };
-
-
 
 
 const mapStateToProps = ({ pizza }) => {

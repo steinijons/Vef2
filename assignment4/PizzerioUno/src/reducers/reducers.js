@@ -1,12 +1,8 @@
 import { combineReducers } from 'redux';
-import pizzaReducer from './pizzaReducer';
-import orderReducer from './orderReducer';
-import offerReducer from './offerReducer';
-import addToCartReducer from './addToCartReducer';
+import pizza from './pizzaReducer';
+import order from './orderReducer';
+import offer from './offerReducer';
 
 export default combineReducers({
-    pizza: pizzaReducer,
-    order: orderReducer,
-    offer: offerReducer,
-    addToCart: addToCartReducer
+    pizza, order, offer
 });
