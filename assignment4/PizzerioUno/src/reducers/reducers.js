@@ -4,8 +4,9 @@ import order from './orderReducer';
 import offer from './offerReducer';
 import pizzaDetail from './pizzaDetailReducer';
 import addToCart from './addToCartReducer';
+import user from './userReducer';
 
 
 export default combineReducers({
-    pizza, order, offer, addToCart, pizzaDetail
+    pizza, order, offer, addToCart, pizzaDetail, user
 });

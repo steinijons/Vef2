@@ -40,7 +40,7 @@ class Pizza extends React.Component {
                     <h3><Link to={`/pizzas/${pizza.id}`}>{pizza.name}</Link></h3>
                 </div>
                 <div className="pizza-description">{pizza.description}</div>
-                <div className="pizza-price">{pizza.price}</div>
+                <div className="pizza-price">{pizza.price} kr</div>
                 <button
                     type="button"
                     className="addPizzaToCartBtn"

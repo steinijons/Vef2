@@ -83,6 +83,7 @@
     color: black;
     font-size: 1.2em;
 }
-.offer-container{
-
+.cart-container {
+    display: flex;
+    justify-content: flex-end;
 }

@@ -7,7 +7,7 @@ const Offer = ({ offer }) => {
     return (
         <div className="container">
             <div className="offer-name">{offerItem}</div>
-            <div className="offer-price">{price}</div>
+            <div className="offer-price">{price} kr</div>
             <div className="offer-valid-for">{validFor}</div>
         </div>
     );
