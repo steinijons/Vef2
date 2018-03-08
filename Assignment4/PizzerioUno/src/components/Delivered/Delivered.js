@@ -1,6 +1,6 @@
 import React from 'react';
 import TextInput from '../TextInput/TextInput';
-import toastr from 'toastr';
+//import toastr from 'toastr';
 //import validator from 'validator';
 import { connect } from 'react-redux';
 
@@ -14,7 +14,7 @@ const initialState = {
     }
 };
 
-class User extends React.Component {
+class Delivered extends React.Component {
     constructor(props) {
         super(props);
         this.state = initialState;
@@ -30,46 +30,48 @@ class User extends React.Component {
         if (fullName === '' || telephone === '' || city === '' || address === '' || zip === '') { return false; }
         console.log(this.state.fields);
         this.setState(initialState);
-        toastr.success('Form was successfully submitted', 'Success!');
+        //toastr.success('Form was successfully submitted', 'Success!');
     }
     render() {
         const { fullName, telephone, zip, address, city } = this.state.fields;
-        const { headings, formValidation, buttons } = this.props.user;
         return (
-            <div>
-                <h1>{headings.signupNow}</h1>
+            <div className="container">
                 <form action="" method="get" onSubmit={(e) => this.onFormSubmit(e)}>
+                    <div className="input-fields">Name</div>
                     <TextInput
                         onChange={e => this.onInput(e)}
                         name="fullName"
                         value={fullName}
                         validate={val => !val ? formValidation.fullNameReq : ''} />
+                    <div className="input-fields">Phone number</div>
                     <TextInput
                         onChange={e => this.onInput(e)}
                         name="telephone"
                         value={telephone}
                         validate={val => !val ? formValidation.telephoneReq : ''} />
-                    <TextInput
-                        onChange={e => this.onInput(e)}
-                        name="city"
-                        value={city}
-                        validate={val => !val ? formValidation.cityReq : ''} />
+                    <div className="input-fields">Address</div>
                     <TextInput
                         onChange={e => this.onInput(e)}
                         name="address"
                         value={address}
                         validate={val => !val ? formValidation.addressReq : ''} />
-                    <CountrySelection onCountrySelection={e => this.onInput(e)} />
+                    <div className="input-fields">Postal code</div>
                     <TextInput
                         onChange={e => this.onInput(e)}
                         name="zip"
                         value={zip}
                         validate={val => !val ? formValidation.zipReq : ''} />
-                    <button type="submit" className="btn">{buttons.submit}</button>
+                    <div className="input-fields">City</div>
+                    <TextInput
+                        onChange={e => this.onInput(e)}
+                        name="city"
+                        value={city}
+                        validate={val => !val ? formValidation.cityReq : ''} />
+                    <button type="submit" className="btn">Confirm</button>
                 </form>
             </div>
         )
     };
 };
 
-export default connect(({ user }) => { return { user }; })(User);
+export default connect(({ user }) => { return { user }; })(Delivered);

@@ -10,6 +10,9 @@ import About from './components/About/About';
 import Offers from './components/Offers/Offers';
 import PizzaDetail from './components/PizzaDetail/pizzaDetail';
 import Cart from './components/Cart/Cart';
+import Checkout from './components/Checkout/Checkout';
+import Delivered from './components/Delivered/Delivered';
+import TakeAway from './components/TakeAway/TakeAway';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 const App = () => {
@@ -22,7 +25,11 @@ const App = () => {
                     <Route path='/pizzas/:pizzaId' component={PizzaDetail}></Route>
                     <Route path='/Offers' component={Offers}></Route>
                     <Route path='/About' component={About}></Route>
-                    <Route path='/Cart' component={Cart}></Route>
+                    <Route exact path='/Cart' component={Cart}></Route>
+                    <Route path='/Cart/Checkout' component={Checkout}></Route>
+                    <Route path='/Menu/Checkout' component={Checkout}></Route>
+                    <Route exact path='/Checkout/Delivered' component={Delivered}></Route>
+                    <Route exact path='/Checkout/TakeAway' component={TakeAway}></Route>
                 </Switch>
             </div>
         </div>
