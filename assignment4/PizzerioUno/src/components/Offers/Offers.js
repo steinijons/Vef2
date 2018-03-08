@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Offer from '../Offer/Offer';
 import { getAllOffers } from '../../actions/pizzaActions';
 
+
 class Offers extends React.Component {
     componentDidMount() {
         const { getAllOffers } = this.props;

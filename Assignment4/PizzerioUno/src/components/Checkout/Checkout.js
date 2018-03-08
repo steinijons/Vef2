@@ -1,9 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import CartItem from '../CartItem/CartItem';
 // Linkar á delivery/takeAway síðuna
+
+var sum = 0;
 
 const Checkout = () => {
     //var oldItems = JASON.parse(localStorage.getItem('cartArray')) || [];
+    var oldItems = JSON.parse(localStorage.getItem('cartArray')) || [];
+
+    for(var i = 0; i < oldItems.length; i++) {
+        sum += (oldItems[i].price);
+    }
+
     console.log('checkout');
     return (
         <div className="checkout-container">
@@ -30,6 +40,13 @@ const Checkout = () => {
                         Take away!
                     </button>
                 </Link>
+            </div>
+            <div className="cart-container">
+                <div className="cart-pizza-wrapper">
+                    <h3>Your order!</h3>
+                    {oldItems.map(p => <CartItem key={p.id} CartItem={p} />)}
+                    <h3>Total: {sum} </h3>
+                </div>
             </div>
         </div>
     );

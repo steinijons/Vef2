@@ -12,7 +12,7 @@ class Menu extends React.Component {
     render() {
         const { pizza } = this.props;
         return (
-            <div className="container">
+            <div className="menu-pizza-container">
                 <div className="menu-checkout">
                     <Link to='Menu/Checkout'>
                         <button

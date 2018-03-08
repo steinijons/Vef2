@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }));
 
-const PORT = 3500;
+const PORT = 3502;
 let orders = {};
 
 const checkExistence = (elems, res) => {

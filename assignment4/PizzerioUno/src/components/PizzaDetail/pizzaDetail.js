@@ -14,10 +14,6 @@ class pizzaDetail extends React.Component {
     }
 
 
-    addToCart(id) {
-        console.log(id);
-    }
-
     render() {
         const { pizza } = this.props;
         return (

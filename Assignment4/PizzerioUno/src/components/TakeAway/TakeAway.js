@@ -3,6 +3,7 @@ import TextInput from '../TextInput/TextInput';
 //import toastr from 'toastr';
 //import validator from 'validator';
 import { connect } from 'react-redux';
+import CartItem from '../CartItem/CartItem';
 
 const initialState = {
     fields: {
@@ -27,10 +28,11 @@ class TakeAway extends React.Component {
         if (fullName === '' || telephone === '') { return false; }
         console.log(this.state.fields);
         this.setState(initialState);
-        <div>{fullName}</div>
+        localStorage.clear();
         //toastr.success('Form was successfully submitted', 'Success!');
     }
     render() {
+        var oldItems = JSON.parse(localStorage.getItem('cartArray')) || [];
         const { fullName, telephone} = this.state.fields;
         return (
             <div className="container">
@@ -40,14 +42,20 @@ class TakeAway extends React.Component {
                         onChange={e => this.onInput(e)}
                         name="fullName"
                         value={fullName}
-                        validate={val => !val ? formValidation.fullNameReq : ''} />
+                        validate={val => !validator.isEmpty(val) ? 'Your name please' : ''} />
                     <div className="input-fields">Phone number</div>
                     <TextInput
                         onChange={e => this.onInput(e)}
                         name="telephone"
                         value={telephone}
-                        validate={val => !val ? formValidation.telephoneReq : ''} />
+                        validate={val => !validator.isNumberic(val) ? 'Your phone number please' : ''} />
                     <button type="submit" className="btn">Confirm</button>
+                    <div className="cart-container">
+                        <div className="cart-pizza-wrapper">
+                            <h3>Your order!</h3>
+                            {oldItems.map(p => <CartItem key={p.id} CartItem={p} />)}
+                        </div>
+                    </div>
                 </form>
             </div>
         )
